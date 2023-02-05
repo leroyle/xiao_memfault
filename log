@@ -1,0 +1,543 @@
+Processing memfault (build_flags: -DMEMFAULT_RTT -g3  -Wl,-z,muldefs -Wl,--build-id  -DCFG_DEBUG -DSEEED_XIAO_NRF52840   -DMEMFAULT -D BOARD_PCA10056 -DBOARD_PCA10056 -DCONFIG_GPIO_AS_PINRESET -DFLOAT_ABI_HARD -DNRF52840_XXAA -DNRF_SD_BLE_API_VERSION=6 -DS140 -DSOFTDEVICE_PRESENT -DSWI_DISABLE0 -mcpu=cortex-m4 -mthumb -mabi=aapcs   -mfloat-abi=hard -mfpu=fpv4-sp-d16 -ffunction-sections -fdata-sections -fno-strict-aliasing -fno-builtin -fshort-enums -Wl,-Map=memfault.map -DCFG_DEBUG -DSEEED_XIAO_NRF52840 -DRV_TEMP_SENSOR   -DFAKE_SENSOR, -L linkscripts; lib_deps: lib/memfault; extra_scripts: prepend_cpppath.py; board_build.ldscript: linkscripts/ldscript.ld; upload_port: /dev/ttyACM1; platform: nordicnrf52; board: xiaoble; framework: arduino; build_type: debug)
+--------------------------------------------------------------------------------
+CONFIGURATION: https://docs.platformio.org/page/boards/nordicnrf52/xiaoble.html
+PLATFORM: Nordic nRF52 (9.4.0) > Seeed XIAO BLE
+HARDWARE: NRF52840 64MHz, 232KB RAM, 792KB Flash
+DEBUG: Current (blackmagic) External (blackmagic, cmsis-dap, jlink)
+PACKAGES: 
+ - framework-arduinoadafruitnrf52 @ 1.10300.0 (1.3.0) 
+ - framework-cmsis @ 2.50700.210515 (5.7.0) 
+ - tool-adafruit-nrfutil @ 1.503.0 (5.3) 
+ - tool-sreccat @ 1.164.0 (1.64) 
+ - toolchain-gccarmnoneeabi @ 1.70201.0 (7.2.1)
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ chain, Compatibility ~ soft
+ENTER MEMFAULT library extra script
+ENTER MEMFAULT library extra script
+Found 22 compatible libraries
+Scanning dependencies...
+Warning! Circular dependencies detected between `/home/leroy/Documents/PlatformIO/Projects/test/lib/nrf5_sdk` and `/home/leroy/Documents/PlatformIO/Projects/test/lib/memfault`
+Warning! Circular dependencies detected between `/home/leroy/Documents/PlatformIO/Projects/test/lib/nrf5_sdk` and `/home/leroy/Documents/PlatformIO/Projects/test/lib/memfault`
+Dependency Graph
+|-- Memfault SDK @ 1.0 (License: Unknown, Path: /home/leroy/Documents/PlatformIO/Projects/test/lib/memfault)
+|-- Adafruit TinyUSB Library (License: Unknown, Path: /home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino)
+Building in debug mode
+Enter MAIN extra script
+arm-none-eabi-g++ -o .pio/build/memfault/src/main.cpp.o -c -fno-rtti -fno-exceptions -std=gnu++11 -fno-threadsafe-statics -mabi=aapcs -fno-strict-aliasing -fno-builtin -fshort-enums -mthumb -mcpu=cortex-m4 -Ofast -ffunction-sections -fdata-sections -Wall -nostdlib --param max-inline-insns-single=500 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -u _printf_float -Og -g2 -ggdb2 -DPLATFORMIO=60105 -DSEEED_XIAO_NRF52840 -DNRF52840_XXAA -DMEMFAULT_RTT -DCFG_DEBUG -DSEEED_XIAO_NRF52840 -DMEMFAULT -DBOARD_PCA10056 -DBOARD_PCA10056 -DCONFIG_GPIO_AS_PINRESET -DFLOAT_ABI_HARD -DNRF52840_XXAA -DNRF_SD_BLE_API_VERSION=6 -DS140 -DSOFTDEVICE_PRESENT -DSWI_DISABLE0 -DCFG_DEBUG -DSEEED_XIAO_NRF52840 -DRV_TEMP_SENSOR -DFAKE_SENSOR -DF_CPU=64000000L -DARDUINO=10804 -DARDUINO_ARCH_NRF52 -DARDUINO_BSP_VERSION=\"1.3.0\" -DARDUINO_NRF52_ADAFRUIT -DNRF52_SERIES -DLFS_NAME_MAX=64 -DDX_CC_TEE -DSOFTDEVICE_PRESENT -DUSBCON -DUSE_TINYUSB -D__PLATFORMIO_BUILD_DEBUG__ -Iinclude -Isrc -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src -Ilib/memfault -Ilib/memfault/include -Ilib/memfault/components/include -Ilib/memfault/components/include/memfault -Ilib/memfault/ports/include -Ilib/memfault/examples/nrf5/apps/memfault_demo_app/third_party/memfault -Ilib/nrf5_sdk/components/libraries/balloc -Ilib/nrf5_sdk/components/libraries/cli -Ilib/nrf5_sdk/components/libraries/cli/rtt -Ilib/nrf5_sdk/components/libraries/delay -Ilib/nrf5_sdk/components/libraries/log/src -Ilib/nrf5_sdk/components/libraries/memobj -Ilib/nrf5_sdk/components/libraries/pwr_mgmt -Ilib/nrf5_sdk/components/libraries/experimental_section_vars -Ilib/nrf5_sdk/components/libraries/log -Ilib/nrf5_sdk/components/libraries/mutex -Ilib/nrf5_sdk/components/libraries/stack_guard -Ilib/nrf5_sdk/components/libraries/strerror -Ilib/nrf5_sdk/components/libraries/timer -Ilib/nrf5_sdk/components/libraries/queue -Ilib/nrf5_sdk/components/libraries/ringbuf -Ilib/nrf5_sdk/components/libraries/util -Ilib/nrf5_sdk/components/softdevice/common -Ilib/nrf5_sdk/components/softdevice/s140/headers -Ilib/nrf5_sdk/modules/nrfx/templates -Ilib/nrf5_sdk/modules/nrfx/templates/nRF52840 -Ilib/nrf5_sdk/components/toolchain/cmsis/include -Ilib/nrf5_sdk/external/fprintf -Ilib/nrf5_sdk/external/freertos/config -Ilib/nrf5_sdk/external/freertos/source/include -Ilib/nrf5_sdk/external/freertos/portable/GCC/nrf52 -Ilib/nrf5_sdk/external/freertos/portable/CMSIS/nrf52 -Ilib/nrf5_sdk/integration/nrfx/legacy -Ilib/nrf5_sdk/modules/nrfx -Ilib/nrf5_sdk/modules/nrfx/hal -Ilib/nrf5_sdk/modules/nrfx/drivers -Ilib/nrf5_sdk/modules/nrfx/drivers/include -Ilib/nrf5_sdk/modules/nrfx/mdk -I/home/leroy/.platformio/platforms/nordicnrf52/builder/FreeRTOS -I/home/leroy/.platformio/platforms/nordicnrf52/builder/Source/LAL -I/home/leroy/.platformio/packages/framework-cmsis/CMSIS/Core/Include -I/home/leroy/.platformio/packages/framework-cmsis/CMSIS/DSP/Include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/mdk -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/soc -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/drivers/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/drivers/src -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/Source/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/config -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/portable/GCC/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/portable/CMSIS/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/sysview/SEGGER -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/sysview/Config -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/arduino -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/variants/Seeed_XIAO_nRF52840_Sense src/main.cpp
+In file included from /home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/WVariant.h:26:0,
+                 from /home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/Arduino.h:41,
+                 from src/main.cpp:2:
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:158:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_range_cfg_output(uint32_t pin_range_start, uint32_t pin_range_end);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:171:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_range_cfg_input(uint32_t            pin_range_start,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:188:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_cfg(
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:204:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_cfg_output(uint32_t pin_number);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:215:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_cfg_input(uint32_t pin_number, nrf_gpio_pin_pull_t pull_config);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:222:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_cfg_default(uint32_t pin_number);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:230:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_cfg_watcher(uint32_t pin_number);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:237:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_input_disconnect(uint32_t pin_number);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:248:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_cfg_sense_input(uint32_t             pin_number,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:258:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_cfg_sense_set(uint32_t             pin_number,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:267:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_pin_dir_set(uint32_t pin_number, nrf_gpio_pin_dir_t direction);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:276:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_pin_set(uint32_t pin_number);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:285:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_pin_clear(uint32_t pin_number);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:294:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_pin_toggle(uint32_t pin_number);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:306:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_pin_write(uint32_t pin_number, uint32_t value);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:317:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_gpio_pin_read(uint32_t pin_number);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+arm-none-eabi-g++ -o .pio/build/memfault/FrameworkArduino/utility/SoftwareTimer.cpp.o -c -fno-rtti -fno-exceptions -std=gnu++11 -fno-threadsafe-statics -mabi=aapcs -fno-strict-aliasing -fno-builtin -fshort-enums -mthumb -mcpu=cortex-m4 -Ofast -ffunction-sections -fdata-sections -Wall -nostdlib --param max-inline-insns-single=500 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -u _printf_float -Og -g2 -ggdb2 -DPLATFORMIO=60105 -DSEEED_XIAO_NRF52840 -DNRF52840_XXAA -DMEMFAULT_RTT -DCFG_DEBUG -DSEEED_XIAO_NRF52840 -DMEMFAULT -DBOARD_PCA10056 -DBOARD_PCA10056 -DCONFIG_GPIO_AS_PINRESET -DFLOAT_ABI_HARD -DNRF52840_XXAA -DNRF_SD_BLE_API_VERSION=6 -DS140 -DSOFTDEVICE_PRESENT -DSWI_DISABLE0 -DCFG_DEBUG -DSEEED_XIAO_NRF52840 -DRV_TEMP_SENSOR -DFAKE_SENSOR -DF_CPU=64000000L -DARDUINO=10804 -DARDUINO_ARCH_NRF52 -DARDUINO_BSP_VERSION=\"1.3.0\" -DARDUINO_NRF52_ADAFRUIT -DNRF52_SERIES -DLFS_NAME_MAX=64 -DDX_CC_TEE -DSOFTDEVICE_PRESENT -DUSBCON -DUSE_TINYUSB -D__PLATFORMIO_BUILD_DEBUG__ -I/home/leroy/.platformio/packages/framework-cmsis/CMSIS/Core/Include -I/home/leroy/.platformio/packages/framework-cmsis/CMSIS/DSP/Include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/mdk -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/soc -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/drivers/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/drivers/src -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/Source/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/config -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/portable/GCC/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/portable/CMSIS/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/sysview/SEGGER -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/sysview/Config -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/arduino -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/variants/Seeed_XIAO_nRF52840_Sense /home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/utility/SoftwareTimer.cpp
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:326:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_gpio_pin_out_read(uint32_t pin_number);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:335:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE nrf_gpio_pin_sense_t nrf_gpio_pin_sense_get(uint32_t pin_number);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:344:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE nrf_gpio_pin_dir_t nrf_gpio_pin_dir_get(uint32_t pin_number);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:353:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE nrf_gpio_pin_input_t nrf_gpio_pin_input_get(uint32_t pin_number);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:362:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE nrf_gpio_pin_pull_t nrf_gpio_pin_pull_get(uint32_t pin_number);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:370:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_port_dir_output_set(NRF_GPIO_Type * p_reg, uint32_t out_mask);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:378:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_port_dir_input_set(NRF_GPIO_Type * p_reg, uint32_t in_mask);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:386:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_port_dir_write(NRF_GPIO_Type * p_reg, uint32_t dir_mask);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:395:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_gpio_port_dir_read(NRF_GPIO_Type const * p_reg);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:404:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_gpio_port_in_read(NRF_GPIO_Type const * p_reg);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:413:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_gpio_port_out_read(NRF_GPIO_Type const * p_reg);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:421:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_port_out_write(NRF_GPIO_Type * p_reg, uint32_t value);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:429:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_port_out_set(NRF_GPIO_Type * p_reg, uint32_t set_mask);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:437:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_port_out_clear(NRF_GPIO_Type * p_reg, uint32_t clr_mask);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:446:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_ports_read(uint32_t   start_port,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:458:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_latches_read(uint32_t   start_port,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:469:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_latches_read_and_clear(uint32_t   start_port,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:480:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_gpio_pin_latch_get(uint32_t pin_number);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:487:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_pin_latch_clear(uint32_t pin_number);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:509:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE NRF_GPIO_Type * nrf_gpio_pin_port_decode(uint32_t * p_pin)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:528:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_range_cfg_output(uint32_t pin_range_start, uint32_t pin_range_end)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:538:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_range_cfg_input(uint32_t            pin_range_start,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:550:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_cfg(
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:568:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_cfg_output(uint32_t pin_number)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+arm-none-eabi-g++ -o .pio/build/memfault/FrameworkArduino/utility/adafruit_fifo.cpp.o -c -fno-rtti -fno-exceptions -std=gnu++11 -fno-threadsafe-statics -mabi=aapcs -fno-strict-aliasing -fno-builtin -fshort-enums -mthumb -mcpu=cortex-m4 -Ofast -ffunction-sections -fdata-sections -Wall -nostdlib --param max-inline-insns-single=500 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -u _printf_float -Og -g2 -ggdb2 -DPLATFORMIO=60105 -DSEEED_XIAO_NRF52840 -DNRF52840_XXAA -DMEMFAULT_RTT -DCFG_DEBUG -DSEEED_XIAO_NRF52840 -DMEMFAULT -DBOARD_PCA10056 -DBOARD_PCA10056 -DCONFIG_GPIO_AS_PINRESET -DFLOAT_ABI_HARD -DNRF52840_XXAA -DNRF_SD_BLE_API_VERSION=6 -DS140 -DSOFTDEVICE_PRESENT -DSWI_DISABLE0 -DCFG_DEBUG -DSEEED_XIAO_NRF52840 -DRV_TEMP_SENSOR -DFAKE_SENSOR -DF_CPU=64000000L -DARDUINO=10804 -DARDUINO_ARCH_NRF52 -DARDUINO_BSP_VERSION=\"1.3.0\" -DARDUINO_NRF52_ADAFRUIT -DNRF52_SERIES -DLFS_NAME_MAX=64 -DDX_CC_TEE -DSOFTDEVICE_PRESENT -DUSBCON -DUSE_TINYUSB -D__PLATFORMIO_BUILD_DEBUG__ -I/home/leroy/.platformio/packages/framework-cmsis/CMSIS/Core/Include -I/home/leroy/.platformio/packages/framework-cmsis/CMSIS/DSP/Include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/mdk -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/soc -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/drivers/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/drivers/src -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/Source/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/config -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/portable/GCC/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/portable/CMSIS/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/sysview/SEGGER -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/sysview/Config -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/arduino -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/variants/Seeed_XIAO_nRF52840_Sense /home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/utility/adafruit_fifo.cpp
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:580:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_cfg_input(uint32_t pin_number, nrf_gpio_pin_pull_t pull_config)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:592:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_cfg_default(uint32_t pin_number)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:604:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_cfg_watcher(uint32_t pin_number)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:614:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_input_disconnect(uint32_t pin_number)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:624:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_cfg_sense_input(uint32_t             pin_number,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:638:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_cfg_sense_set(uint32_t             pin_number,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:649:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_pin_dir_set(uint32_t pin_number, nrf_gpio_pin_dir_t direction)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:669:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_pin_set(uint32_t pin_number)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:677:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_pin_clear(uint32_t pin_number)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:685:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_pin_toggle(uint32_t pin_number)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:695:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_pin_write(uint32_t pin_number, uint32_t value)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:708:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_gpio_pin_read(uint32_t pin_number)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:716:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_gpio_pin_out_read(uint32_t pin_number)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:724:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE nrf_gpio_pin_sense_t nrf_gpio_pin_sense_get(uint32_t pin_number)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:733:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE nrf_gpio_pin_dir_t nrf_gpio_pin_dir_get(uint32_t pin_number)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:741:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE nrf_gpio_pin_input_t nrf_gpio_pin_input_get(uint32_t pin_number)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:749:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE nrf_gpio_pin_pull_t nrf_gpio_pin_pull_get(uint32_t pin_number)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:758:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_port_dir_output_set(NRF_GPIO_Type * p_reg, uint32_t out_mask)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:764:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_port_dir_input_set(NRF_GPIO_Type * p_reg, uint32_t in_mask)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:770:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_port_dir_write(NRF_GPIO_Type * p_reg, uint32_t value)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:776:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_gpio_port_dir_read(NRF_GPIO_Type const * p_reg)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:782:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_gpio_port_in_read(NRF_GPIO_Type const * p_reg)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:788:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_gpio_port_out_read(NRF_GPIO_Type const * p_reg)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:794:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_port_out_write(NRF_GPIO_Type * p_reg, uint32_t value)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:800:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_port_out_set(NRF_GPIO_Type * p_reg, uint32_t set_mask)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:806:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_port_out_clear(NRF_GPIO_Type * p_reg, uint32_t clr_mask)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:812:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_ports_read(uint32_t   start_port,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+arm-none-eabi-g++ -o .pio/build/memfault/FrameworkArduino/utility/debug.cpp.o -c -fno-rtti -fno-exceptions -std=gnu++11 -fno-threadsafe-statics -mabi=aapcs -fno-strict-aliasing -fno-builtin -fshort-enums -mthumb -mcpu=cortex-m4 -Ofast -ffunction-sections -fdata-sections -Wall -nostdlib --param max-inline-insns-single=500 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -u _printf_float -Og -g2 -ggdb2 -DPLATFORMIO=60105 -DSEEED_XIAO_NRF52840 -DNRF52840_XXAA -DMEMFAULT_RTT -DCFG_DEBUG -DSEEED_XIAO_NRF52840 -DMEMFAULT -DBOARD_PCA10056 -DBOARD_PCA10056 -DCONFIG_GPIO_AS_PINRESET -DFLOAT_ABI_HARD -DNRF52840_XXAA -DNRF_SD_BLE_API_VERSION=6 -DS140 -DSOFTDEVICE_PRESENT -DSWI_DISABLE0 -DCFG_DEBUG -DSEEED_XIAO_NRF52840 -DRV_TEMP_SENSOR -DFAKE_SENSOR -DF_CPU=64000000L -DARDUINO=10804 -DARDUINO_ARCH_NRF52 -DARDUINO_BSP_VERSION=\"1.3.0\" -DARDUINO_NRF52_ADAFRUIT -DNRF52_SERIES -DLFS_NAME_MAX=64 -DDX_CC_TEE -DSOFTDEVICE_PRESENT -DUSBCON -DUSE_TINYUSB -D__PLATFORMIO_BUILD_DEBUG__ -I/home/leroy/.platformio/packages/framework-cmsis/CMSIS/Core/Include -I/home/leroy/.platformio/packages/framework-cmsis/CMSIS/DSP/Include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/mdk -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/soc -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/drivers/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/drivers/src -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/Source/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/config -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/portable/GCC/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/portable/CMSIS/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/sysview/SEGGER -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/sysview/Config -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/arduino -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/variants/Seeed_XIAO_nRF52840_Sense /home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/utility/debug.cpp
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:830:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_latches_read(uint32_t   start_port,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:844:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_latches_read_and_clear(uint32_t   start_port,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:862:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_gpio_pin_latch_get(uint32_t pin_number)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_gpio.h:870:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_gpio_pin_latch_clear(uint32_t pin_number)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+In file included from /home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/Tone.h:27:0,
+                 from /home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/Arduino.h:54,
+                 from src/main.cpp:2:
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:247:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_task_trigger(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:258:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_pwm_task_address_get(NRF_PWM_Type const * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:267:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_event_clear(NRF_PWM_Type *  p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:279:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE bool nrf_pwm_event_check(NRF_PWM_Type const * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:290:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_pwm_event_address_get(NRF_PWM_Type const * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:299:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_shorts_enable(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:308:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_shorts_disable(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:317:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_shorts_set(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:326:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_int_enable(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:335:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_int_disable(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:344:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_int_set(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:355:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_pwm_int_enable_check(NRF_PWM_Type const * p_reg, uint32_t mask);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:408:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_enable(NRF_PWM_Type * p_reg);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:415:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_disable(NRF_PWM_Type * p_reg);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:427:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_pins_set(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:438:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_configure(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:450:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_sequence_set(NRF_PWM_Type *             p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:462:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_seq_ptr_set(NRF_PWM_Type *   p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:474:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_seq_cnt_set(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:486:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_seq_refresh_set(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+arm-none-eabi-gcc -o .pio/build/memfault/FrameworkArduino/utility/utilities.c.o -c -std=gnu11 -mabi=aapcs -fno-strict-aliasing -fno-builtin -fshort-enums -mthumb -mcpu=cortex-m4 -Ofast -ffunction-sections -fdata-sections -Wall -nostdlib --param max-inline-insns-single=500 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -u _printf_float -Og -g2 -ggdb2 -DPLATFORMIO=60105 -DSEEED_XIAO_NRF52840 -DNRF52840_XXAA -DMEMFAULT_RTT -DCFG_DEBUG -DSEEED_XIAO_NRF52840 -DMEMFAULT -DBOARD_PCA10056 -DBOARD_PCA10056 -DCONFIG_GPIO_AS_PINRESET -DFLOAT_ABI_HARD -DNRF52840_XXAA -DNRF_SD_BLE_API_VERSION=6 -DS140 -DSOFTDEVICE_PRESENT -DSWI_DISABLE0 -DCFG_DEBUG -DSEEED_XIAO_NRF52840 -DRV_TEMP_SENSOR -DFAKE_SENSOR -DF_CPU=64000000L -DARDUINO=10804 -DARDUINO_ARCH_NRF52 -DARDUINO_BSP_VERSION=\"1.3.0\" -DARDUINO_NRF52_ADAFRUIT -DNRF52_SERIES -DLFS_NAME_MAX=64 -DDX_CC_TEE -DSOFTDEVICE_PRESENT -DUSBCON -DUSE_TINYUSB -D__PLATFORMIO_BUILD_DEBUG__ -I/home/leroy/.platformio/packages/framework-cmsis/CMSIS/Core/Include -I/home/leroy/.platformio/packages/framework-cmsis/CMSIS/DSP/Include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/mdk -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/soc -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/drivers/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/drivers/src -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/Source/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/config -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/portable/GCC/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/portable/CMSIS/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/sysview/SEGGER -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/sysview/Config -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/arduino -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/variants/Seeed_XIAO_nRF52840_Sense /home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/utility/utilities.c
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:498:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_seq_end_delay_set(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:510:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_decoder_set(NRF_PWM_Type *     p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:524:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_loop_set(NRF_PWM_Type * p_reg, uint16_t loop_count);
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:529:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_task_trigger(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:535:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_pwm_task_address_get(NRF_PWM_Type const * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:541:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_event_clear(NRF_PWM_Type *  p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:551:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE bool nrf_pwm_event_check(NRF_PWM_Type const * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:557:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_pwm_event_address_get(NRF_PWM_Type const * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:563:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_shorts_enable(NRF_PWM_Type * p_reg, uint32_t mask)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:568:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_shorts_disable(NRF_PWM_Type * p_reg, uint32_t mask)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+arm-none-eabi-gcc -o .pio/build/memfault/FrameworkArduino/wiring.c.o -c -std=gnu11 -mabi=aapcs -fno-strict-aliasing -fno-builtin -fshort-enums -mthumb -mcpu=cortex-m4 -Ofast -ffunction-sections -fdata-sections -Wall -nostdlib --param max-inline-insns-single=500 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -u _printf_float -Og -g2 -ggdb2 -DPLATFORMIO=60105 -DSEEED_XIAO_NRF52840 -DNRF52840_XXAA -DMEMFAULT_RTT -DCFG_DEBUG -DSEEED_XIAO_NRF52840 -DMEMFAULT -DBOARD_PCA10056 -DBOARD_PCA10056 -DCONFIG_GPIO_AS_PINRESET -DFLOAT_ABI_HARD -DNRF52840_XXAA -DNRF_SD_BLE_API_VERSION=6 -DS140 -DSOFTDEVICE_PRESENT -DSWI_DISABLE0 -DCFG_DEBUG -DSEEED_XIAO_NRF52840 -DRV_TEMP_SENSOR -DFAKE_SENSOR -DF_CPU=64000000L -DARDUINO=10804 -DARDUINO_ARCH_NRF52 -DARDUINO_BSP_VERSION=\"1.3.0\" -DARDUINO_NRF52_ADAFRUIT -DNRF52_SERIES -DLFS_NAME_MAX=64 -DDX_CC_TEE -DSOFTDEVICE_PRESENT -DUSBCON -DUSE_TINYUSB -D__PLATFORMIO_BUILD_DEBUG__ -I/home/leroy/.platformio/packages/framework-cmsis/CMSIS/Core/Include -I/home/leroy/.platformio/packages/framework-cmsis/CMSIS/DSP/Include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/mdk -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/soc -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/drivers/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/drivers/src -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/Source/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/config -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/portable/GCC/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/portable/CMSIS/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/sysview/SEGGER -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/sysview/Config -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/arduino -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/variants/Seeed_XIAO_nRF52840_Sense /home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/wiring.c
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:573:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_shorts_set(NRF_PWM_Type * p_reg, uint32_t mask)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:578:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_int_enable(NRF_PWM_Type * p_reg, uint32_t mask)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:583:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_int_disable(NRF_PWM_Type * p_reg, uint32_t mask)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:588:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_int_set(NRF_PWM_Type * p_reg, uint32_t mask)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:593:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE uint32_t nrf_pwm_int_enable_check(NRF_PWM_Type const * p_reg, uint32_t mask)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:628:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_enable(NRF_PWM_Type * p_reg)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:633:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_disable(NRF_PWM_Type * p_reg)
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:638:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_pins_set(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:648:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_configure(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:660:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_sequence_set(NRF_PWM_Type *             p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:672:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_seq_ptr_set(NRF_PWM_Type *   p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:681:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_seq_cnt_set(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+arm-none-eabi-g++ -o .pio/build/memfault/FrameworkArduino/wiring_analog.cpp.o -c -fno-rtti -fno-exceptions -std=gnu++11 -fno-threadsafe-statics -mabi=aapcs -fno-strict-aliasing -fno-builtin -fshort-enums -mthumb -mcpu=cortex-m4 -Ofast -ffunction-sections -fdata-sections -Wall -nostdlib --param max-inline-insns-single=500 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -u _printf_float -Og -g2 -ggdb2 -DPLATFORMIO=60105 -DSEEED_XIAO_NRF52840 -DNRF52840_XXAA -DMEMFAULT_RTT -DCFG_DEBUG -DSEEED_XIAO_NRF52840 -DMEMFAULT -DBOARD_PCA10056 -DBOARD_PCA10056 -DCONFIG_GPIO_AS_PINRESET -DFLOAT_ABI_HARD -DNRF52840_XXAA -DNRF_SD_BLE_API_VERSION=6 -DS140 -DSOFTDEVICE_PRESENT -DSWI_DISABLE0 -DCFG_DEBUG -DSEEED_XIAO_NRF52840 -DRV_TEMP_SENSOR -DFAKE_SENSOR -DF_CPU=64000000L -DARDUINO=10804 -DARDUINO_ARCH_NRF52 -DARDUINO_BSP_VERSION=\"1.3.0\" -DARDUINO_NRF52_ADAFRUIT -DNRF52_SERIES -DLFS_NAME_MAX=64 -DDX_CC_TEE -DSOFTDEVICE_PRESENT -DUSBCON -DUSE_TINYUSB -D__PLATFORMIO_BUILD_DEBUG__ -I/home/leroy/.platformio/packages/framework-cmsis/CMSIS/Core/Include -I/home/leroy/.platformio/packages/framework-cmsis/CMSIS/DSP/Include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/mdk -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/soc -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/drivers/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/drivers/src -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/Source/include -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/config -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/portable/GCC/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/portable/CMSIS/nrf52 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/sysview/SEGGER -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/sysview/Config -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/arduino -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5 -I/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/variants/Seeed_XIAO_nRF52840_Sense /home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/wiring_analog.cpp
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:691:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_seq_refresh_set(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:700:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_seq_end_delay_set(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:709:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_decoder_set(NRF_PWM_Type *     p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/hal/nrf_pwm.h:717:1: error: 'NRF_STATIC_INLINE' does not name a type; did you mean '__STATIC_INLINE'?
+ NRF_STATIC_INLINE void nrf_pwm_loop_set(NRF_PWM_Type * p_reg,
+ ^~~~~~~~~~~~~~~~~
+ __STATIC_INLINE
+In file included from /home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/Arduino.h:68:0,
+                 from src/main.cpp:2:
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/delay.h: In function 'void delayMicroseconds(uint32_t)':
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/delay.h:79:3: error: 'nrfx_coredep_delay_us' was not declared in this scope
+   nrfx_coredep_delay_us(usec);
+   ^~~~~~~~~~~~~~~~~~~~~
+In file included from /home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/osal/osal.h:53:0,
+                 from /home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/tusb.h:38,
+                 from /home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/arduino/Adafruit_USBD_Device.h:29,
+                 from /home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/Adafruit_TinyUSB.h:38,
+                 from src/main.cpp:3:
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/osal/osal_freertos.h: In function 'void* osal_semaphore_create(osal_semaphore_def_t*)':
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/osal/osal_freertos.h:56:10: error: 'xSemaphoreCreateBinaryStatic' was not declared in this scope
+   return xSemaphoreCreateBinaryStatic(semdef);
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/osal/osal_freertos.h:56:10: note: suggested alternative: 'xSemaphoreCreateBinary'
+   return xSemaphoreCreateBinaryStatic(semdef);
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          xSemaphoreCreateBinary
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/osal/osal_freertos.h: In function 'void* osal_mutex_create(osal_mutex_def_t*)':
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/osal/osal_freertos.h:99:10: error: 'xSemaphoreCreateMutexStatic' was not declared in this scope
+   return xSemaphoreCreateMutexStatic(mdef);
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/osal/osal_freertos.h:99:10: note: suggested alternative: 'xSemaphoreCreateMutex'
+   return xSemaphoreCreateMutexStatic(mdef);
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+          xSemaphoreCreateMutex
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/osal/osal_freertos.h: In function 'void* osal_queue_create(osal_queue_def_t*)':
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/osal/osal_freertos.h:134:10: error: 'xQueueCreateStatic' was not declared in this scope
+   return xQueueCreateStatic(qdef->depth, qdef->item_sz, (uint8_t*) qdef->buf, &qdef->sq);
+          ^~~~~~~~~~~~~~~~~~
+/home/leroy/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/src/osal/osal_freertos.h:134:10: note: suggested alternative: 'xQueueCreateSet'
+   return xQueueCreateStatic(qdef->depth, qdef->item_sz, (uint8_t*) qdef->buf, &qdef->sq);
+          ^~~~~~~~~~~~~~~~~~
+          xQueueCreateSet
+*** [.pio/build/memfault/src/main.cpp.o] Error 1
+========================== [FAILED] Took 6.40 seconds ==========================

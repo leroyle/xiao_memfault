@@ -1,0 +1,59 @@
+
+import os
+Import("env")
+print(env.Dump())
+if os.path.isdir(env['PIOENV']):
+    incdir = env['PIOENV']
+else:
+    incdir = "."
+
+#env['LAL_FLAG'] = "MEMFAULT"
+
+#env['LAL_1'] = "$( ${_concat(INCPREFIX, CPPPATH, INCSUFFIX, __env__, RDirs, TARGET, SOURCE)} $)" % (incdir)
+#env['LAL_2'] = "-I%s $( ${_concat(INCPREFIX, CPPPATH, INCSUFFIX, __env__, RDirs, TARGET, SOURCE)} $)" % (incdir)
+#env['_CPPINCFLAGS'] = "-I%s $( ${_concat(INCPREFIX, CPPPATH, INCSUFFIX, __env__, RDirs, TARGET, SOURCE)} $)" % (incdir)
+
+
+print("LAL TEST ENV")
+
+print("LAL_env")
+for item in env.get("__env__", []):
+        print("LAL_")
+        print(item)
+#env['INCOREFIX'] = ""
+
+print("LAL TEST CPPPATH")
+for item in env.get("CPPPATH", []):
+        print("LAL_")
+        print(item)
+
+print("LAL TEST BEFORE CPPINCFLAGS")
+print(env.get('_CPPINCFLAGS'))
+for item in env.get('_CPPINCFLAGS', []):
+        print("LAL_")
+        print(item)
+
+#env['CPPPATH'] = []
+for item in env.get("CPPDEFINES", []):
+    if item == "LAL_MEMFAULT":
+        env['_CPPINCFLAGS'] = "-I%s $( ${_concat(INCPREFIX, CPPPATH, INCSUFFIX, __env__, RDirs, TARGET, SOURCE)} $)" % (incdir)
+
+
+print("LAL TEST  CPPFLAGs")
+#env.get("CPPPATH").clear()
+#CPPPATH.append("PEET")
+for item in env.get("CPPPATH", []):
+#    if item == "LAL_MEMFAULT":
+    print("ITEM_")
+    print(item[0])
+    if isinstance(item, tuple) and item[0] == "HAL":
+        print("LAL_")
+        print(item)
+
+print("LAL TEST AFTER  CPPFLAGs")
+
+print("LAL TEST AFTER CPPINCFLAGS")
+for item in env.get('_CPPINCFLAGS', []):
+        print("LAL_")
+        print(item)
+

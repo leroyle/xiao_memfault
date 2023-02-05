@@ -1,0 +1,55 @@
+
+{
+    "name": "nrf5_sdk",
+    "version": "1.0",
+    "keywords": "nrf52, nordic",
+    "description": "Nordic source files for Memfault",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/noidea/noidea.git"
+    },
+    "frameworks": "arduino",
+    "platforms": "nordicnrf52",
+    "build": {
+	"includeDir": ".",
+        "libArchive": false,
+		"flags": [
+			" -D NRF5_SDK_INCS",
+			" -D MEMFAULT_LIB",
+			"-Iinclude",
+			"-I ../../include/FreeRTOS",
+			"-I ../memfault/components/include",
+			"-I ../memfault/components/include/memfault",
+			"-I ../memfault/ports/include",
+			"-I ../memfault/examples/nrf5/apps/memfault_demo_app/third_party/memfault",
+			"-I components/libraries/balloc",
+			"-I components/libraries/atomic",
+			"-I components/libraries/cli",
+			"-I components/libraries/cli/rtt",
+			"-I components/libraries/delay",
+			"-I components/libraries/log/src",
+			"-I components/libraries/memobj",
+			"-I components/libraries/pwr_mgmt",
+			"-I components/libraries/experimental_section_vars",
+			"-I components/libraries/log",
+			"-I components/libraries/mutex",
+			"-I components/libraries/stack_guard/",
+			"-I components/libraries/strerror",
+			"-I components/libraries/timer",
+			"-I components/libraries/queue",
+			"-I components/libraries/ringbuf",
+			"-I components/libraries/util",
+			"-I components/softdevice/common/",
+			"-I components/softdevice/s140/headers/",
+			"-I external/fprintf/",
+			"-I integration/nrfx/legacy",
+			"-I modules/nrfx",
+			"-I modules/nrfx/hal",
+			"-I modules/nrfx/drivers/include",
+			"-I modules/nrfx/mdk",
+			"-I FreeRTOS",
+			"-I Source/LAL"
+		],
+    }
+}
+
