@@ -1,10 +1,10 @@
 
-Import("env")
+Import("env", "projenv")
 import os
 import fnmatch
 
 
-print("ENTER MEMFAULT library extra script")
+#print("ENTER MEMFAULT library extra script")
 #print(env.Dump())
 
 if os.path.isdir(env['PIOENV']):
@@ -13,12 +13,11 @@ else:
     incdir = "."
 
 # only if we need to look in current dir for includes
-#env['_CPPINCFLAGS'] = "-I%s $( ${_concat(INCPREFIX, CPPPATH, INCSUFFIX, __env__, RDirs, TARGET, SOURCE, affect_signature=False)} $)" % (incdir)
+#env['_CPPINCFLAGS'] = "-I%s $( ${_concat(INCPREFIX, CPPPATH, INCSUFFIX, __env, RDirs, TARGET, SOURCE, affect_signature=False)} $)" % (incdir)
 
 
-def filterCPPPath(env, node):
-    #print("NODE NAME")
-    #print (node.name)
+# update the CPP Path, remove unwanted Adafruit paths
+def update_CPPPATH():
 
     NRF_INCS = []
     ADAFRUIT_INCS = []
@@ -41,14 +40,19 @@ def filterCPPPath(env, node):
     env['CPPPATH'] = NRF_INCS
     # env['ADAFPATHS'] = ADAFRUIT_INCS
 
-#   print("testme CPPPATH")
-#   for item in env.get('CPPPATH', []):
-#       print(item)
+    #print("testme CPPPATH")
+    #for item in env.get('CPPPATH', []):
+    #    print(item)
      
+
+def filterCPPPath(env, node):
+    #print("NODE NAME")
+    #print (node.name)
     return env.Object(
         node,
-        CPPPATH=env['CPPPATH'],
-        CCFLAGS=env['CCFLAGS'] + ["-fno-builtin-printf"]
+        CPPPATH=env['CPPPATH']
     )
 
 env.AddBuildMiddleware(filterCPPPath)
+
+update_CPPPATH()

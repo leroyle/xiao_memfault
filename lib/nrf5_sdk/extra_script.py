@@ -1,48 +1,59 @@
 
-import os
 Import("env")
+import os
 import fnmatch
 
-print("ENTER NRF5_SDK script")
 
-# print(env.Dump())
+#print("ENTER NRF5_SDK library extra script")
+#print(env.Dump())
+
 if os.path.isdir(env['PIOENV']):
     incdir = env['PIOENV']
 else:
     incdir = "."
 
-#env['_CPPINCFLAGS'] = "-I%s $( ${_concat(INCPREFIX, CPPPATH, INCSUFFIX, __env__, RDirs, TARGET, SOURCE)} $)" % (incdir)
+# only if we need to look in current dir for includes
+#env['_CPPINCFLAGS'] = "-I%s $( ${_concat(INCPREFIX, CPPPATH, INCSUFFIX, __env__, RDirs, TARGET, SOURCE, affect_signature=False)} $)" % (incdir)
 
 
-print("LAL  NRF5_SDK TEST CPPPATH")
-NEW_CPPPATH = []
-NEW_NRFINCS = []
-pattern = "*framework*"
+# remove unwanted nrf5_sdk paths
+def update_CPPPATH_NRF():
 
-for item in env.get("CPPPATH", []):
-    
-    if fnmatch.fnmatch(item, pattern):
-        NEW_NRFINCS.append(item)
-    else:
-        NEW_CPPPATH.append(item)
+    NRF_INCS = []
+    ADAFRUIT_INCS = []
+    pattern = "*framework*"
 
-env['CPPPATH'] = NEW_CPPPATH
+    # CPPPATH contains Adafriuit include paths, separate out the Adafruit paths
+    for item in env.get("CPPPATH", []):
+         #print("In test me")
+         #print(item)
+         if fnmatch.fnmatch(item, pattern):
+             #print("MATCH")
+             #print(item)
+             ADAFRUIT_INCS.append(item)
+         else:
+             NRF_INCS.append(item)
+             #print("NO MATCH")
+             #print(item)
 
-#print("LAL NRF5_SDK TEST CPPDEFINES")
-for item in env.get("CPPDEFINES", []):
-    if item == "NRF5_SDK_INCS":
-        # env['_CPPINCFLAGS'] = "-I%s $( ${_concat(INCPREFIX, INCSUFFIX, __env__, RDirs, TARGET, SOURCE)} $)" % (incdir)
-        env['_CPPINCFLAGS'] = "-I%s $( ${_concat(INCPREFIX, CPPPATH, INCSUFFIX, __env__, RDirs, TARGET, SOURCE)} $)" % (incdir)
-        break
+    # put only NRF includes back into CPPPATH
+    env['CPPPATH'] = NRF_INCS
+    # env['ADAFPATHS'] = ADAFRUIT_INCS
 
+#   print("testme CPPPATH")
+#   for item in env.get('CPPPATH', []):
+#       print(item)
+     
 
+# this is run for each source file
+def filterCPPPath_NRF(env, node):
+    #print("NODE NAME")
+    #print (node.name)
+    return env.Object(
+        node,
+        CPPPATH=env['CPPPATH']
+    )
 
-print("LAL NRF5_SDK CPPPATH")
-for item in env.get("CPPPATH", []):
-    print(item)
+env.AddBuildMiddleware(filterCPPPath_NRF)
 
-
-print("LAL NRF5_SDK SAVE_CPPPATH")
-for item in env.get("SAVE_CPPPATH", []):
-    print(item)
-
+update_CPPPATH_NRF()

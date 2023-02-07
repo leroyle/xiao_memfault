@@ -1,6 +1,6 @@
 
 {
-    "name": "Memfault SDK",
+    "name": "memfault_sdk",
     "version": "1.0",
     "keywords": "Memfault",
     "description": "Memfault SDK",
