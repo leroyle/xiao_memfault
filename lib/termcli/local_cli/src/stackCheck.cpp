@@ -1,83 +1,23 @@
-#ifdef ENABLE_APP_CLI
 #include <Arduino.h>
-#include "stackCheck.h"
-#include "repeatCommand.h"
 
 void dbgStackCheck();
-static RepeatTest repeatFlag = STOPREPEAT;
-static uint32_t lastRunTime = 0;
 
-void dbgStackCheck(const char *repeat, const char * repeatTime);
 void loc_vTaskList(char * pcWriteBuffer );
-static void isRepeat (uint32_t cycleTime);
 static char *loc_prvWriteNameToBuffer( char *pcBuffer, const char *pcTaskName );
 
-void init_stackCheck(EmbeddedCli *cli)
-{
-	embeddedCliAddBinding(cli, {
-		"stackCheck",
-		"Dump Stack Statistics [T/F, # seconds]",
-		true,
-		nullptr,
-		onStackCheck
-    });
-}
-
-void onStackCheck(EmbeddedCli *cli, char *args, void *context) {
-    Serial.println(F("onStackCheck: "));
-    
-    const char * _repeat = NULL;
-    const char *  _repeatTime = NULL;
-    embeddedCliTokenizeArgs(args);
-    for (int i = 1; i <= embeddedCliGetTokenCount(args); ++i)
-    {
-        Serial.print(F("arg"));
-        Serial.print((char)('0' + i));
-        Serial.print(F(": "));
-        const char *curArg = embeddedCliGetToken(args, i);
-        Serial.println(curArg);
-
-        if (i == 1)
-        {
-            _repeat = curArg;
-        }
-        if(i == 2)
-        {
-            _repeatTime = curArg;
-        }
-    }
-    stackCheck(_repeat, _repeatTime);
-    Serial.print("\r\n");
-}
-
-void stackCheck(const char *repeat, const char * repeatTime)
+void stackCheck()
 {
     // the Adafruit delivered version of dbgMemInfo() dumps out
     // heap info as well as stack, we only want stack.
     //dbgMemInfo();
-    dbgStackCheck(repeat, repeatTime);
+    dbgStackCheck();
 }
 
-void dbgStackCheck(const char *repeat, const char * repeatTime)
+void dbgStackCheck()
 {
-  if (repeat != NULL || repeatTime != NULL)
-  {
-    RepeatTest processRes = processRepeatArgs(repeat, repeatTime, &isRepeat);
-    if(processRes == NOCHANGE)
-    {
-      // leave as is
-      ;
-    }
-    else if(processRes == REPEAT)
-    {
-      repeatFlag = REPEAT;
-    } else if(processRes == STOPREPEAT)
-    {
-      repeatFlag = STOPREPEAT;
-    }
-  }
-
-  // Print Task list with stack left stat
+	Serial.println("test1");
+  Serial.flush();
+// Print Task list with stack left stat
   uint32_t tasknum = uxTaskGetNumberOfTasks();
   char* buf = (char*) rtos_malloc(tasknum*80); // 40 bytes per task
 
@@ -91,19 +31,6 @@ void dbgStackCheck(const char *repeat, const char * repeatTime)
   rtos_free(buf);
 }
 
-static void __attribute__ ((unused)) isRepeat (uint32_t cycleTime)
-{
-  if(repeatFlag == REPEAT)
-  {
-    uint32_t currentTime = millis();
-
-    if(currentTime > (lastRunTime + cycleTime))
-    {
-      lastRunTime = currentTime;
-      dbgStackCheck(NULL, NULL);
-    }
-  }
-}
 /**
  * @brief This was copied from the FreeRTOS implementation file at:
  *  .platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/freertos/Source/tasks.c
@@ -113,12 +40,11 @@ static void __attribute__ ((unused)) isRepeat (uint32_t cycleTime)
  */
 void loc_vTaskList(char * pcWriteBuffer )
 	{
-	
-	const char tskRUNNING_CHAR = 'X';
-	const char tskBLOCKED_CHAR = 'B';
-	const char tskREADY_CHAR = 'R';
-	const char tskDELETED_CHAR = 'D';
-	const char tskSUSPENDED_CHAR = 'S';
+	#define tskRUNNING_CHAR		( 'X' )
+	#define tskBLOCKED_CHAR		( 'B' )
+	#define tskREADY_CHAR		( 'R' )
+	#define tskDELETED_CHAR		( 'D' )
+	#define tskSUSPENDED_CHAR	( 'S' )
 	
 	TaskStatus_t *pxTaskStatusArray;
 	volatile UBaseType_t uxArraySize, x;
@@ -272,4 +198,3 @@ static char *loc_prvWriteNameToBuffer( char *pcBuffer, const char *pcTaskName )
 		/* Return the new end of string. */
 		return &( pcBuffer[ x ] );
 	}
-#endif // ENABLE_APP_CLI

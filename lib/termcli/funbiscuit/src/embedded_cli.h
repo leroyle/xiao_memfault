@@ -1,7 +1,6 @@
 #ifndef EMBEDDED_CLI_H
 #define EMBEDDED_CLI_H
 
-#ifdef ENABLE_APP_CLI
 
 #ifdef __cplusplus
 
@@ -293,6 +292,5 @@ uint16_t embeddedCliGetTokenCount(const char *tokenizedStr);
 }
 #endif
 
-#endif //EMBEDDED_CLI_H
 
-#endif
+#endif //EMBEDDED_CLI_H

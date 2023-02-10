@@ -43,7 +43,7 @@
 #include "nrf_pwr_mgmt.h"
 #include "nrf.h"
 #include "nrf_mtx.h"
-#include "nrf5_power.h"
+#include "nrf_power.h"
 #include "app_error.h"
 #include "nrf_assert.h"
 #include "nrf_log_ctrl.h"

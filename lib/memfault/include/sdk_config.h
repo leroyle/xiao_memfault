@@ -75,6 +75,7 @@
 #define MEMFAULT_PLATFORM_COREDUMP_CAPTURE_STACK_ONLY 0
 // Overrides required for enabling RTT CLI
 #define NRF_LOG_ENABLED 1
+#define NRF_CLOCK_ENABLED 1
 // #define MEMFAULT_PLATFORM_CONFIG_FILE 1
 #define NRFX_RTC_ENABLED 1
 #define NRFX_RTC2_ENABLED 1
@@ -1743,6 +1744,12 @@
 #endif
 
 // </e>
+
+// <e> NRFX_CLOCK_ENABLED - nrfx_clock - CLOCK peripheral driver
+//==========================================================
+#ifndef NRFX_CLOCK_ENABLED
+#define NRFX_CLOCK_ENABLED 1
+#endif
 
 // <o> NRFX_CLOCK_CONFIG_LF_SRC  - LF Clock Source
 

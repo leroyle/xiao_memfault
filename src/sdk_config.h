@@ -70,15 +70,11 @@
 #define NRF_BLE_SCAN_MAX_CONNECTION_INTERVAL 30
 #define NRF_BLE_SCAN_SLAVE_LATENCY 0
 
-//LAL
-#define MEMFAULT_PLATFORM_COREDUMP_CUSTOM_REGIONS 1
-#define MEMFAULT_PLATFORM_COREDUMP_CAPTURE_STACK_ONLY 0
 // Overrides required for enabling RTT CLI
+//LAL
 #define NRF_LOG_ENABLED 1
-// #define MEMFAULT_PLATFORM_CONFIG_FILE 1
-#define NRFX_RTC_ENABLED 1
-#define NRFX_RTC2_ENABLED 1
-
+// #define NRF_POWER_HAS_DCDCEN 1
+#define NRF_CLOCK_ENABLED 1
 #define NRF_CLI_RTT_ENABLED 1
 #define NRF_CLI_RTT_TERMINAL_ID 0
 #define NRF_CLI_LOG_BACKEND 1
@@ -1744,6 +1740,11 @@
 
 // </e>
 
+// <e> NRFX_CLOCK_ENABLED - nrfx_clock - CLOCK peripheral driver
+//==========================================================
+#ifndef NRFX_CLOCK_ENABLED
+#define NRFX_CLOCK_ENABLED 1
+#endif
 // <o> NRFX_CLOCK_CONFIG_LF_SRC  - LF Clock Source
 
 // <0=> RC
@@ -2466,6 +2467,11 @@
 
 // </e>
 
+// <e> NRFX_POWER_ENABLED - nrfx_power - POWER peripheral driver
+//==========================================================
+#ifndef NRFX_POWER_ENABLED
+#define NRFX_POWER_ENABLED 0
+#endif
 // <o> NRFX_POWER_CONFIG_IRQ_PRIORITY  - Interrupt priority
 
 // <0=> 0 (highest)
@@ -2982,6 +2988,11 @@
 
 // </e>
 
+// <e> NRFX_QSPI_ENABLED - nrfx_qspi - QSPI peripheral driver
+//==========================================================
+#ifndef NRFX_QSPI_ENABLED
+#define NRFX_QSPI_ENABLED 0
+#endif
 // <o> NRFX_QSPI_CONFIG_SCK_DELAY - tSHSL, tWHSL and tSHWL in number of 16 MHz periods (62.5 ns).  <0-255>
 
 
@@ -3187,9 +3198,6 @@
 
 // <e> NRFX_RTC_ENABLED - nrfx_rtc - RTC peripheral driver
 //==========================================================
-//LAL for lib/nrf5_sdk/software_watchdog.c
-#define NRFX_RTC_ENABLED 1
-
 #ifndef NRFX_RTC_ENABLED
 #define NRFX_RTC_ENABLED 0
 #endif
@@ -3407,6 +3415,46 @@
 // </e>
 
 // </e>
+
+// <e> NRFX_SPIM_ENABLED - nrfx_spim - SPIM peripheral driver
+//==========================================================
+#ifndef NRFX_SPIM_ENABLED
+#define NRFX_SPIM_ENABLED 0
+#endif
+// <q> NRFX_SPIM0_ENABLED  - Enable SPIM0 instance
+
+
+#ifndef NRFX_SPIM0_ENABLED
+#define NRFX_SPIM0_ENABLED 0
+#endif
+
+// <q> NRFX_SPIM1_ENABLED  - Enable SPIM1 instance
+
+
+#ifndef NRFX_SPIM1_ENABLED
+#define NRFX_SPIM1_ENABLED 0
+#endif
+
+// <q> NRFX_SPIM2_ENABLED  - Enable SPIM2 instance
+
+
+#ifndef NRFX_SPIM2_ENABLED
+#define NRFX_SPIM2_ENABLED 0
+#endif
+
+// <q> NRFX_SPIM3_ENABLED  - Enable SPIM3 instance
+
+
+#ifndef NRFX_SPIM3_ENABLED
+#define NRFX_SPIM3_ENABLED 0
+#endif
+
+// <q> NRFX_SPIM_EXTENDED_ENABLED  - Enable extended SPIM features
+
+
+#ifndef NRFX_SPIM_EXTENDED_ENABLED
+#define NRFX_SPIM_EXTENDED_ENABLED 0
+#endif
 
 // <o> NRFX_SPIM_MISO_PULL_CFG  - MISO pin pull configuration.
 

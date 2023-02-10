@@ -1,4 +1,4 @@
-#ifdef ENABLE_APP_CLI
+
 #include <Arduino.h>
 #include <Adafruit_TinyUSB.h>
 
@@ -6,24 +6,19 @@
 // New Command
 #include "stackCheck.h"
 #include "heapCheck.h"
-#include "funbiscuit_cli.h"
-#include "debugLevel.h"
-#include "sendTestTran.h"
-#include "repeatCommand.h"
-#include "connectCheck.h"
+#include "cli.h"
 
 char cliAppVersion [VERSION_MAX];
-extern uint32_t appStartMillis;
 
 // 164 bytes is minimum size for this params on Arduino Nano
-#define CLI_BUFFER_SIZE 1000 // 164
+#define CLI_BUFFER_SIZE 400 // 164
 #define CLI_RX_BUFFER_SIZE 16
 #define CLI_CMD_BUFFER_SIZE 32
-#define CLI_HISTORY_SIZE 32 *2
+#define CLI_HISTORY_SIZE 32
 
 // New Command, this needs to be incremented
 // when adding a new command
-#define CLI_BINDING_COUNT 14
+#define CLI_BINDING_COUNT 6
 
 EmbeddedCli *cli;
 
@@ -40,20 +35,18 @@ void onLed(EmbeddedCli *cli, char *args, void *context);
 void onAdc(EmbeddedCli *cli, char *args, void *context);
 
 // New Command
+void onStackCheck(EmbeddedCli *cli, char *args, void *context);
+
+void onHeapCheck(EmbeddedCli *cli, char *args, void *context);
+
 void onGetAppVersion(EmbeddedCli *cli, char *args, void *context);
-
-void onUpTime(EmbeddedCli *cli, char *args, void *context);
-
-// void onSendTestTran(EmbeddedCli *cli, char *args, void *context);
-
-// void onGetTestTranList(EmbeddedCli *cli, char *args, void *context);
 
 // end New Command
 
 // CLI Task
 void cliTask(void *arg);
 static TaskHandle_t  _cliTaskHandle;
-#define CLI_STACK_SZ       (256*5)
+#define CLI_STACK_SZ       (256*4)
 //
 
 uint8_t cliSetup(const char *appVersion) {
@@ -105,15 +98,21 @@ uint8_t cliSetup(const char *appVersion) {
     });
 
     // New Command
-   
-   // add binding for external commands
-    init_repeatCommand(cli);
-    init_stackCheck(cli);
-    init_heapCheck(cli);
-    init_debugLevel(cli);
-    init_sendTestTran(cli);
-    init_connectCheck(cli);
+    embeddedCliAddBinding(cli, {
+            "stackCheck",
+            "Dump Stack Statistics",
+            true,
+            nullptr,
+            onStackCheck
+    });
 
+    embeddedCliAddBinding(cli, {
+            "heapCheck",
+            "Dump Heap Statistics",
+            true,
+            nullptr,
+            onHeapCheck
+    });
 
     embeddedCliAddBinding(cli, {
             "appVersion",
@@ -122,15 +121,6 @@ uint8_t cliSetup(const char *appVersion) {
             nullptr,
             onGetAppVersion
     });
-
-    embeddedCliAddBinding(cli, {
-            "getUpTime",
-            "Time since app started (Might roll over)",
-            true,
-            nullptr,
-            onUpTime
-    });
-
     // end New Command
 
     cli->onCommand = onCommand;
@@ -175,17 +165,22 @@ void onAdc(EmbeddedCli *cli, char *args, void *context) {
 }
 
 // New Command
+void onStackCheck(EmbeddedCli *cli, char *args, void *context) {
+    Serial.println(F("onStackCheck: "));
+    stackCheck();
+    Serial.print("\r\n");
+}
+
+void onHeapCheck(EmbeddedCli *cli, char *args, void *context) {
+    Serial.println(F("onHeapCheck: "));
+    checkHeapSpace();
+    Serial.print("\r\n");
+}
 
 void onGetAppVersion (EmbeddedCli *cli, char *args, void *context) {
     Serial.print(cliAppVersion);
     Serial.print("\r\n");
 }
-
-uint32_t appStartMillis;
-void onUpTime (EmbeddedCli *cli, char *args, void *context) {
-    printf("App UpTime (seconds): %lu\r\n", (millis() - appStartMillis) /1000);
-}
-
 // End New Command
 
 void writeChar(EmbeddedCli *embeddedCli, char c) {
@@ -206,9 +201,7 @@ void cliTask(void *arg)
         }
 
         embeddedCliProcess(cli);
-        runRepeatList();
         // let other tasks run
         yield();
     }
 }
-#endif // ENABLE_APP_CLI

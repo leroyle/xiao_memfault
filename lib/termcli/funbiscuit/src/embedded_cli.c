@@ -1,5 +1,3 @@
-#ifdef ENABLE_APP_CLI
-
 #include <stdlib.h>
 #include <string.h>
 
@@ -1068,7 +1066,7 @@ static bool historyPut(CliHistory *history, const char *str) {
     // remove str from history (if it's present) so we don't get duplicates
     historyRemove(history, str);
 
-    size_t usedSize = 0;
+    size_t usedSize;
     // remove old items if new one can't fit into buffer
     while (history->itemsCount > 0) {
         const char *item = historyGet(history, history->itemsCount);
@@ -1154,5 +1152,3 @@ static uint16_t getTokenPosition(const char *tokenizedStr, uint16_t pos) {
     else
         return CLI_TOKEN_NPOS;
 }
-
-#endif  // ENABLE_APP_CLI
