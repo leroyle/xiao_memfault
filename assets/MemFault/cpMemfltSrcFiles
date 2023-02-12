@@ -2,7 +2,12 @@
 # set -x
 #
 MEMFLT_SRCDIR=~/Documents/Tools/MemFault/memfault-firmware-sdk/
-PIO_PROJLIB=~/Documents/PlatformIO/Projects/xiao_memfault/lib
+PIO_PROJDIR=~/Documents/PlatformIO/Projects/test
+PIO_PROJLIB=~/Documents/PlatformIO/Projects/test/lib
+#PIO_PROJLIB=~/Documents/PlatformIO/Projects/test/lib/tmp/libnew
+#PIO_PROJLIB=libnew
+ASSET_DIR=$PIO_PROJDIR/assets/MemFault
+
 PIO_MEMFLT_LIBDIR=memfault
 
 srcFiles=./_srcFiles
@@ -12,9 +17,16 @@ then
  	echo "Missing NRF source directory \"$MEMFLT_SRCDIR\""
 	exit
 fi
+
 if [ ! -d $PIO_PROJLIB ]
 then 
  	echo "Missing PlatformIO project destination directory \"$PIO_PROJLIB\""
+	exit
+fi
+
+if [ ! -d $ASSET_DIR ]
+then 
+ 	echo "Missing asset directory containing customized files \"$ASSET_DIR\""
 	exit
 fi
 
@@ -81,6 +93,7 @@ components/core/src/memfault_log_data_source_private.h
 components/core/src/memfault_log_data_source.c
 components/core/src/memfault_reboot_tracking_private.h
 components/core/src/memfault_custom_data_recording_private.h
+components/core/src/memfault_log.c
 components/core/src/memfault_ram_reboot_info_tracking.c
 components/core/src/memfault_trace_event_private.h
 components/core/src/memfault_heap_stats.c
@@ -228,10 +241,30 @@ examples/nrf5/apps/memfault_demo_app/third_party/memfault/memfault_platform_port
 examples/nrf5/apps/memfault_demo_app/third_party/memfault/memfault_metrics_heartbeat_config.def
 examples/nrf5/apps/memfault_demo_app/third_party/memfault/memfault_trace_reason_user_config.def
 examples/nrf5/apps/memfault_demo_app/third_party/memfault/memfault_platform_log_config.h
-examples/nrf5/apps/memfault_demo_app/third_party/memfault/sdk_overrides/app_error.h
 EOF
 
 
+# custom fixups
+function customFixes()
+{
+
+# workaround for API collisions, freertos_trace is required for copying 
+# task data to the core file
+   mkdir -p $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/arduino/framework-arduinoadafruitnrf52/ports/include/memfault/ports
+   cp $MEMFLT_SRCDIR/ports/include/memfault/ports/freertos_trace.h $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/arduino/framework-arduinoadafruitnrf52/ports/include/memfault/ports/freertos_trace.h
+   mkdir -p $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/arduino/framework-arduinoadafruitnrf52/components/include/memfault/core/
+   touch $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/arduino/framework-arduinoadafruitnrf52/components/include/memfault/core/heap_stats.h
+   mkdir -p $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/arduino/framework-arduinoadafruitnrf52/components/include/memfault/
+   touch $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/arduino/framework-arduinoadafruitnrf52/components/include/memfault/config.h
+
+# customize Memfault source files
+  mkdir -p $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/ports/freertos/src/
+  cp $ASSET_DIR/MemfaultSrc/lib/memfault/ports/freertos/src/memfault_freertos_ram_regions.c $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/ports/freertos/src/
+  mkdir -p  $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/components/core/src/
+  cp $ASSET_DIR/MemfaultSrc/lib/memfault/components/core/src/memfault_log.c $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/components/core/src/
+}
+
  copyFiles
+ customFixes
 #rmFiles
 rm -f $srcFiles

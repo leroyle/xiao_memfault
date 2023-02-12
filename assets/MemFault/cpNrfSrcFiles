@@ -2,9 +2,9 @@
 # set -x
 # My usage of current version of memfault cli needs SDK version 17
 NRF_SRCDIR=~/Documents/Tools/Nordic/NRF5_SDK/nRF5_SDK_17.1.0_ddde560
+MEMFLT_SRCDIR=~/Documents/Tools/MemFault/memfault-firmware-sdk/
 
-#PIO_PROJLIB=~/Documents/PlatformIO/Projects/xiao_memfault/libnew
-PIO_PROJLIB=./libnew
+PIO_PROJLIB=~/Documents/PlatformIO/Projects/test/lib
 PIO_NRFLIBDIR=nrf5_sdk
 
 srcFiles=./_srcFiles
@@ -12,6 +12,11 @@ srcFiles=./_srcFiles
 if [ ! -d $NRF_SRCDIR ]
 then 
 	echo "Missing NRF source directory \"$NRF_SRC_DIR\""
+	exit
+fi
+if [ ! -d $MEMFLT_SRCDIR ]
+then 
+	echo "Missing NRF source directory \"$MEMFLT_SRC_DIR\""
 	exit
 fi
 if [ ! -d $PIO_PROJLIB ]
@@ -139,7 +144,6 @@ external/fprintf/nrf_fprintf.c
 external/fprintf/nrf_fprintf_format.c
 external/fprintf/nrf_fprintf_format.h
 external/fprintf/nrf_fprintf.h
-external/freertos/config/FreeRTOSConfig.h
 external/freertos/portable/CMSIS/nrf52/portmacro_cmsis.h
 external/freertos/portable/GCC/nrf52/portmacro.h
 external/freertos/source/include/deprecated_definitions.h
@@ -231,7 +235,17 @@ modules/nrfx/soc/nrfx_irqs_nrf52840.h
 modules/nrfx/templates/nRF52840/nrfx_config.h
 EOF
 
+
+function cpExtras()
+{
+# We need the Memfault version of app_error.h
+ mkdir -p $PIO_PROJLIB/$PIO_NRFLIBDIR/components/libraries/util/
+  cp $MEMFLT_SRCDIR/examples/nrf5/apps/memfault_demo_app/third_party/memfault/sdk_overrides/app_error.h $PIO_PROJLIB/$PIO_NRFLIBDIR/components/libraries/util
+
+}
+
 cpFiles
+cpExtras
 #rmFiles
 
 exit
