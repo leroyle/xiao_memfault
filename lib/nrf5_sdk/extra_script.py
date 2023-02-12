@@ -40,13 +40,18 @@ def update_CPPPATH_NRF():
     env['CPPPATH'] = NRF_INCS
     # env['ADAFPATHS'] = ADAFRUIT_INCS
 
-#   print("testme CPPPATH")
-#   for item in env.get('CPPPATH', []):
-#       print(item)
+    #print("testme CPPPATH")
+    #for item in env.get('CPPPATH', []):
+    #   print(item)
+     
+    #print("testme CFLAGS")
+    #for item in env.get('CFLAGS', []):
+    #   print(item)
      
 
 # this is run for each source file
 def filterCPPPath_NRF(env, node):
+    update_CPPPATH_NRF()
     #print("NODE NAME")
     #print (node.name)
     return env.Object(

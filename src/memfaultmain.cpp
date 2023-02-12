@@ -10,7 +10,6 @@
 #include "app_error.h"
 #include "app_timer.h"
 
-#define ADD_WATCHDOG
 
 extern "C" {
 #include "nrf_pwr_mgmt.h"
@@ -20,10 +19,14 @@ extern "C" {
 #include "mflt_cli.h"
 #include "memfault/components.h"
 
+#if defined (MEMFAULT_TERM) || defined (MEMFAULT_RTT)
 
 #ifdef ADD_WATCHDOG
 #include "memfault/ports/watchdog.h"
 #endif
+
+#endif
+
 #include "memfault/ports/freertos.h"
 
 /**

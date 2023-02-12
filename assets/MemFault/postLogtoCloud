@@ -1,0 +1,2 @@
+
+memfault --project-key y4WZfbngG8rpJPmgviQXlJ7ldhXeUgEj  post-chunk --encoding sdk_data_export log

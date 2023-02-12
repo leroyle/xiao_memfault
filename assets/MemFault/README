@@ -1,0 +1,19 @@
+
+
+
+ to test memfault
+In either case you must start a terminal window as we wait for Serial to become active in
+setup().
+
+1. connect JLink and board
+2. upload app
+3. connect with GDB or Ozone
+4. start  JLinkRTTClient  ( it looks to connect to a debugger)
+
+or 
+
+
+1. connect JLink and board
+2. Upload app
+3. start JLinkRTTViewer, select logging menu
+ Note: Not sure, might be best to hit enter button on viewer rather than enter key???

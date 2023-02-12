@@ -42,12 +42,23 @@ def update_CPPPATH():
 
     #print("testme CPPPATH")
     #for item in env.get('CPPPATH', []):
-    #    print(item)
+    #   print(item)
+    #print(env['CPPPATH'])
+     
+    #print("testme CFLAGS")
+    #for item in env.get('CFLAGS', []):
+    #   print(item)
      
 
 def filterCPPPath(env, node):
+    update_CPPPATH()
     #print("NODE NAME")
     #print (node.name)
+    #print("testme callback CPPPATH")
+    #for item in env.get('CPPPATH', []):
+    #   print(item)
+     
+     
     return env.Object(
         node,
         CPPPATH=env['CPPPATH']

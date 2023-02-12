@@ -1,0 +1,4 @@
+
+ copy in freertos config.h file
+ update task.c to add back  ( see base FreeRTOS repo )
+    ( void ) uxTopUsedPriority;

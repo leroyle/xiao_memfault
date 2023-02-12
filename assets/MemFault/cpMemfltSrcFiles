@@ -1,0 +1,237 @@
+
+# set -x
+#
+MEMFLT_SRCDIR=~/Documents/Tools/MemFault/memfault-firmware-sdk/
+PIO_PROJLIB=~/Documents/PlatformIO/Projects/xiao_memfault/lib
+PIO_MEMFLT_LIBDIR=memfault
+
+srcFiles=./_srcFiles
+
+if [ ! -d $MEMFLT_SRCDIR ]
+then 
+ 	echo "Missing NRF source directory \"$MEMFLT_SRCDIR\""
+	exit
+fi
+if [ ! -d $PIO_PROJLIB ]
+then 
+ 	echo "Missing PlatformIO project destination directory \"$PIO_PROJLIB\""
+	exit
+fi
+
+function copyFiles() {
+# copy files
+for i in `cat $srcFiles`
+do
+
+  if [ -f $MEMFLT_SRCDIR/$i ]
+  then
+   newDir=`dirname $i`
+
+   mkdir -p $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/$newDir
+   cp -r $MEMFLT_SRCDIR/$i $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/$newDir
+  else
+   echo "   ERROR file not found: $i"
+   echo "Aborting"
+   exit
+  fi
+
+done
+
+}
+
+function rmFiles() {
+# copy files
+for i in `cat $srcFiles`
+do
+
+  newDir=`dirname $i`
+#  if [ $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/$newDir/$i ]
+  if [ $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/$i ]
+  then
+   rm  $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/$i
+  else
+   echo "   ERROR file not found: $i"
+   echo "Aborting"
+   exit
+  fi
+
+done
+
+}
+
+
+
+## Create the list of files
+cat <<EOF >$srcFiles
+components/core/src/memfault_reboot_tracking_serializer.c
+components/core/src/.gitkeep
+components/core/src/memfault_build_id.c
+components/core/src/memfault_sdk_assert.c
+components/core/src/arch_arm_cortex_m.c
+components/core/src/memfault_task_watchdog.c
+components/core/src/memfault_log_private.h
+components/core/src/memfault_data_export.c
+components/core/src/memfault_batched_events.c
+components/core/src/memfault_serializer_helper.c
+components/core/src/memfault_build_id_private.h
+components/core/src/memfault_trace_event.c
+components/core/src/memfault_custom_data_recording.c
+components/core/src/memfault_data_packetizer.c
+components/core/src/memfault_log_data_source_private.h
+components/core/src/memfault_log_data_source.c
+components/core/src/memfault_reboot_tracking_private.h
+components/core/src/memfault_custom_data_recording_private.h
+components/core/src/memfault_ram_reboot_info_tracking.c
+components/core/src/memfault_trace_event_private.h
+components/core/src/memfault_heap_stats.c
+components/core/src/memfault_event_storage.c
+components/core/src/memfault_data_source_rle.c
+components/core/src/memfault_compact_log_serializer.c
+components/core/src/memfault_core_utils.c
+components/core/README.md
+components/demo/src/memfault_demo_core.c
+components/demo/src/panics/memfault_demo_cli_aux.c
+components/demo/src/panics/memfault_demo_panics.c
+components/demo/src/panics/memfault_demo_cli_aux_private.h
+components/demo/src/memfault_demo_cli_drain_chunks.c
+components/demo/src/memfault_demo_shell.c
+components/demo/src/memfault_demo_shell_commands.c
+components/demo/src/memfault_demo_cli_trace_event.c
+components/demo/src/memfault_demo_cli_log.c
+components/demo/src/http/memfault_demo_http.c
+components/demo/README.md
+components/panics/src/memfault_coredump_storage_debug.c
+components/panics/src/memfault_coredump_regions_armv7.c
+components/panics/src/memfault_fault_handling_xtensa.c
+components/panics/src/memfault_fault_handling_aarch64.c
+components/panics/src/memfault_fault_handling_arm.c
+components/panics/src/memfault_coredump_utils.c
+components/panics/src/memfault_coredump.c
+components/panics/src/memfault_coredump_sdk_regions.c
+components/panics/README.md
+components/README.md
+components/metrics/src/memfault_metrics_serializer.c
+components/metrics/src/memfault_metrics.c
+components/metrics/README.md
+components/include/memfault/components.h
+components/include/memfault/core/sdk_assert.h
+components/include/memfault/core/heap_stats.h
+components/include/memfault/core/errors.h
+components/include/memfault/core/platform/overrides.h
+components/include/memfault/core/platform/core.h
+components/include/memfault/core/platform/device_info.h
+components/include/memfault/core/platform/reboot_tracking.h
+components/include/memfault/core/platform/nonvolatile_event_storage.h
+components/include/memfault/core/platform/crc32.h
+components/include/memfault/core/platform/debug_log.h
+components/include/memfault/core/platform/system_time.h
+components/include/memfault/core/build_info.h
+components/include/memfault/core/compiler_ti_arm.h
+components/include/memfault/core/trace_reason_user.h
+components/include/memfault/core/data_export.h
+components/include/memfault/core/reboot_reason_types.h
+components/include/memfault/core/math.h
+components/include/memfault/core/preprocessor.h
+components/include/memfault/core/heap_stats_impl.h
+components/include/memfault/core/data_source_rle.h
+components/include/memfault/core/compact_log_compile_time_checks.h
+components/include/memfault/core/log.h
+components/include/memfault/core/event_storage.h
+components/include/memfault/core/compiler_gcc.h
+components/include/memfault/core/task_watchdog_impl.h
+components/include/memfault/core/event_storage_implementation.h
+components/include/memfault/core/device_info.h
+components/include/memfault/core/trace_event.h
+components/include/memfault/core/reboot_tracking.h
+components/include/memfault/core/log_impl.h
+components/include/memfault/core/custom_data_recording.h
+components/include/memfault/core/serializer_helper.h
+components/include/memfault/core/data_packetizer.h
+components/include/memfault/core/trace_event_impl.h
+components/include/memfault/core/arch.h
+components/include/memfault/core/compiler_iar.h
+components/include/memfault/core/compiler_armcc.h
+components/include/memfault/core/compact_log_helpers.h
+components/include/memfault/core/batched_events.h
+components/include/memfault/core/debug_log.h
+components/include/memfault/core/data_packetizer_source.h
+components/include/memfault/core/compact_log_serializer.h
+components/include/memfault/core/compiler.h
+components/include/memfault/core/serializer_key_ids.h
+components/include/memfault/core/task_watchdog.h
+components/include/memfault/demo/shell_commands.h
+components/include/memfault/demo/util.h
+components/include/memfault/demo/cli.h
+components/include/memfault/demo/shell.h
+components/include/memfault/panics/platform/coredump.h
+components/include/memfault/panics/arch/arm/aarch64.h
+components/include/memfault/panics/arch/arm/cortex_m.h
+components/include/memfault/panics/arch/xtensa/xtensa.h
+components/include/memfault/panics/coredump_impl.h
+components/include/memfault/panics/fault_handling.h
+components/include/memfault/panics/coredump.h
+components/include/memfault/panics/assert.h
+components/include/memfault/version.h
+components/include/memfault/metrics/heartbeat_config.def
+components/include/memfault/metrics/platform/overrides.h
+components/include/memfault/metrics/platform/timer.h
+components/include/memfault/metrics/ids_impl.h
+components/include/memfault/metrics/utils.h
+components/include/memfault/metrics/metrics.h
+components/include/memfault/metrics/serializer.h
+components/include/memfault/default_config.h
+components/include/memfault/config.h
+components/include/memfault/util/base64.h
+components/include/memfault/util/varint.h
+components/include/memfault/util/circular_buffer.h
+components/include/memfault/util/crc16_ccitt.h
+components/include/memfault/util/rle.h
+components/include/memfault/util/chunk_transport.h
+components/include/memfault/util/cbor.h
+components/include/memfault/http/platform/http_client.h
+components/include/memfault/http/root_certs.h
+components/include/memfault/http/http_client.h
+components/include/memfault/http/utils.h
+components/util/src/memfault_chunk_transport.c
+components/util/src/memfault_rle.c
+components/util/src/memfault_crc16_ccitt.c
+components/util/src/memfault_base64.c
+components/util/src/memfault_circular_buffer.c
+components/util/src/memfault_varint.c
+components/util/src/memfault_minimal_cbor.c
+components/util/README.md
+components/http/src/memfault_root_certs_der.c
+components/http/src/memfault_http_utils.c
+components/http/src/memfault_http_client.c
+components/http/src/memfault_http_client_post_chunk.c
+components/http/README.md
+ports/panics/src/memfault_platform_ram_backed_coredump.c
+ports/README.md
+ports/include/memfault/ports/freertos_coredump.h
+ports/include/memfault/ports/buffered_coredump_storage.h
+ports/include/memfault/ports/reboot_reason.h
+ports/include/memfault/ports/freertos.h
+ports/include/memfault/ports/freertos_trace.h
+ports/include/memfault/ports/ble/mds.h
+ports/include/memfault/ports/watchdog.h
+ports/include/.mtbsearch.h
+ports/nrf5_sdk/nrf5_coredump_regions.c
+ports/nrf5_sdk/nrf5_coredump_storage.c
+ports/nrf5_sdk/software_watchdog.c
+ports/nrf5_sdk/resetreas_reboot_tracking.c
+ports/nrf5_sdk/memfault_platform_metrics.c
+ports/freertos/src/memfault_core_freertos.c
+ports/freertos/src/memfault_metrics_freertos.c
+ports/freertos/src/memfault_panics_freertos.c
+ports/freertos/README.md
+examples/nrf5/apps/memfault_demo_app/third_party/memfault/memfault_platform_port.c
+examples/nrf5/apps/memfault_demo_app/third_party/memfault/memfault_metrics_heartbeat_config.def
+examples/nrf5/apps/memfault_demo_app/third_party/memfault/memfault_trace_reason_user_config.def
+examples/nrf5/apps/memfault_demo_app/third_party/memfault/memfault_platform_log_config.h
+examples/nrf5/apps/memfault_demo_app/third_party/memfault/sdk_overrides/app_error.h
+EOF
+
+
+ copyFiles
+#rmFiles
+rm -f $srcFiles

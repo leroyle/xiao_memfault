@@ -1,0 +1,64 @@
+#set -x
+# requires the memfault nrf5 sdk sample app to be built
+#
+
+echo "Creating nRF5 SDK archive file"
+sleep 2
+
+#dir=~/Documents/Tools/MemFault/memfault-firmware-sdk/examples/nrf5/apps/memfault_demo_app_v7/build/memfault_demo_app_nrf52840_s140
+dir=~/Documents/Tools/MemFault/memfault-firmware-sdk/examples/nrf5/apps/memfault_lib/build/memfault_demo_app_nrf52840_s140
+
+arDir=./arTmpDir
+lib=libnrfsdk.a
+objFiles=listofOs
+
+rm -rf ./arTmpDir
+rm -f $lib
+rm -f $objFiles
+
+mkdir $arDir
+
+## Create the list of .o files
+cat <<EOF >$objFiles
+app_timer.c.o
+app_util_platform.c.o
+nrf_atomic.c.o
+nrf_balloc.c.o
+nrf_cli_rtt.c.o
+nrf_fprintf.c.o
+nrf_fprintf_format.c.o
+nrf_log_backend_rtt.c.o
+nrf_log_backend_serial.c.o
+nrf_log_default_backends.c.o
+nrf_log_frontend.c.o
+nrf_log_str_formatter.c.o
+nrf_memobj.c.o
+nrf_nvmc.c.o
+nrf_pwr_mgmt.c.o
+nrf_queue.c.o
+nrf_ringbuf.c.o
+nrf_sdh.c.o
+nrf_section_iter.c.o
+nrfx_wdt.c.o
+EOF
+
+
+# create the archive
+
+for i in `cat $objFiles`
+do
+
+  if [ -f $dir/$i ]
+  then
+   cp $dir/$i $arDir
+  else
+   echo "   ERROR file not found: $i"
+   echo "Aborting"
+   exit
+  fi
+
+done
+
+ ar -rv $lib $arDir/*.o
+
+ rm -f $objFiles
