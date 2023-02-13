@@ -1,0 +1,78 @@
+NOTE: This may brick your device. Make sure you have access to a debug module that you can use to flash the device via SWD. USB flashing may not be enough.
+
+Dependent software versions used
+
+PlatformIO Core
+version 6.1.6
+
+
+PlatformIO framework version
+framework-arduinoadafruitnrf52
+  version: 1.10300.0 (1.3.0)
+
+PlatformIO Platform
+ nordicnrf52
+ version: 9.4.0
+
+gcc compiler
+toolchain-gccarmnoneeabi @ 1.70201.0 (7.2.1)
+
+Memfault version
+BUILD ID: 1184
+GIT COMMIT: b60ef08d3
+
+Mordic nRF SDK version
+nRF5_SDK_17.1.0_ddde560
+
+
+1. Download PlatformIO and related files for your target Seeed Xiao BLE or RAK Wireless Wixblock. These environments must be full operational. A simple executing "Hello World" should suffice. 
+
+2. Download the above version of Memfault SDK
+https://github.com/memfault/memfault-firmware-sdk
+you will need to checkout version "b60ef08d3" 
+later versions "may" work but have not been tested.
+
+3. Download the above version of the Nordic NRF SDK (this is not nRFConnect)
+https://www.nordicsemi.com/Products/Development-software/nrf5-sdk/download
+again note the version, other versions may work but have not been tested
+
+
+4. within the "xiao_memfault" project there are two copy scripts that will
+copy the appropriate files from the downloaded SDK into the project lib directory. Note: there are custom files already located within the projects lib directory be careful to not delete those.
+
+assets/Memfault/cpMemfltSrcFiles
+assets/Memfault/cpNrfSrcFiles
+
+Please note the source and destination directories setup at the top of the copy script files. These must be set appropriately. Once set properly these will copy in the necessary source files into the project lib directories. Be careful here to make sure the paths are set correctly.
+
+Once the copies are complete one should be able to build the appropriate target and upload to your device.
+
+
+Targets:
+
+There are six targets defined within the project platformio.ini
+
+term_cli
+memfault_term
+memfaul_rtt
+
+wisblock_cli
+wisblock_term
+wisblock_rtt
+
+
+
+NOTE: In all cases the code will spin wait, waiting for a serial terminal to attach to the device. If no serial terminal attaches, basically nothing happens.
+
+- The _cli targets implement a custom cli interface but does not execute any Memfault code. This uses the standard serial terminal for interface
+
+- the _term targets do implement Memfault functionality via the standard serial terminal interface. Once the terminal is started, hit enter, followed by typing in "help".
+
+- the _rtt targets do implement Memfault functionality via the ARM RTT interface.
+This requires the use of a debug module (Segger J-Link), a debugger- with GDB or Segger Ozone as well as the Segger JLinkRTTClient executable. 
+The debugger must be attached to the running device, but not stopped at a breakpoint.
+Once the JLinkRTTClient has attached type in "help" to get a list of supported commands. NOTE: the list of commands is shorter than the _term verions mentioned above.
+Again, starting the serial terminal interface is required as the code again does a spin wait waiting for the Serial to be available.
+
+
+
