@@ -1,0 +1,6 @@
+
+UF2 Bootloader 0.6.2-14-gce511dc-dirty lib/nrfx (v2.0.0) lib/tinyusb (0.10.1-293-gaf8e5a90f) lib/uf2 (remotes/origin/configupdate-9-gadbb8c7)
+Model: Seeed XIAO nRF52840
+Board-ID: Seeed_XIAO_nRF52840
+Date: Aug 11 2022
+SoftDevice: S140 7.3.0
