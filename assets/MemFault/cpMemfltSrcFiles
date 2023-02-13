@@ -4,6 +4,7 @@
 MEMFLT_SRCDIR=~/Documents/Tools/MemFault/memfault-firmware-sdk/
 PIO_PROJDIR=~/Documents/PlatformIO/Projects/test
 PIO_PROJLIB=~/Documents/PlatformIO/Projects/test/lib
+PIO_FRAMEWORK_ARDUINO_ADA=~/.platformio/packages/framework-arduinoadafruitnrf52
 #PIO_PROJLIB=~/Documents/PlatformIO/Projects/test/lib/tmp/libnew
 #PIO_PROJLIB=libnew
 ASSET_DIR=$PIO_PROJDIR/assets/MemFault
@@ -250,21 +251,24 @@ function customFixes()
 
 # workaround for API collisions, freertos_trace is required for copying 
 # task data to the core file
-   mkdir -p $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/arduino/framework-arduinoadafruitnrf52/ports/include/memfault/ports
-   cp $MEMFLT_SRCDIR/ports/include/memfault/ports/freertos_trace.h $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/arduino/framework-arduinoadafruitnrf52/ports/include/memfault/ports/freertos_trace.h
-   mkdir -p $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/arduino/framework-arduinoadafruitnrf52/components/include/memfault/core/
-   touch $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/arduino/framework-arduinoadafruitnrf52/components/include/memfault/core/heap_stats.h
-   mkdir -p $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/arduino/framework-arduinoadafruitnrf52/components/include/memfault/
-   touch $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/arduino/framework-arduinoadafruitnrf52/components/include/memfault/config.h
+   mkdir -p $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/ports/include/memfault/ports
+   cp $MEMFLT_SRCDIR/ports/include/memfault/ports/freertos_trace.h $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/ports/include/memfault/ports/freertos_trace.h
+   mkdir -p $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/components/include/memfault/core/
+   touch $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/components/include/memfault/core/heap_stats.h
+   mkdir -p $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/components/include/memfault/
+   touch $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/components/include/memfault/config.h
 
 # customize Memfault source files
   mkdir -p $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/ports/freertos/src/
   cp $ASSET_DIR/MemfaultSrc/lib/memfault/ports/freertos/src/memfault_freertos_ram_regions.c $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/ports/freertos/src/
   mkdir -p  $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/components/core/src/
   cp $ASSET_DIR/MemfaultSrc/lib/memfault/components/core/src/memfault_log.c $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/components/core/src/
+
+  mkdir -p $PIO_PROJDIR/include/drivers/
+  cp $PIO_FRAMEWORK_ARDUINO_ADA/cores/nRF5/nordic/nrfx/drivers/nrfx_common.h $PIO_PROJDIR/include/drivers
 }
 
- copyFiles
+# copyFiles
  customFixes
 #rmFiles
 rm -f $srcFiles
