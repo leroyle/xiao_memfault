@@ -1,13 +1,19 @@
 
 # set -x
 #
+# Adjust the following pointers to reflect your installation
+#
+echo ""
+echo "*** Please reset the top level directories before using this script ***"
+echo ""
+exit
+
 MEMFLT_SRCDIR=~/Documents/Tools/MemFault/memfault-firmware-sdk/
 PIO_PROJDIR=~/Documents/PlatformIO/Projects/test
 PIO_PROJLIB=~/Documents/PlatformIO/Projects/test/lib
 PIO_FRAMEWORK_ARDUINO_ADA=~/.platformio/packages/framework-arduinoadafruitnrf52
-#PIO_PROJLIB=~/Documents/PlatformIO/Projects/test/lib/tmp/libnew
-#PIO_PROJLIB=libnew
 ASSET_DIR=$PIO_PROJDIR/assets/MemFault
+
 
 PIO_MEMFLT_LIBDIR=memfault
 

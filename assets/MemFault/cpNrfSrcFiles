@@ -1,10 +1,19 @@
 
 # set -x
 # My usage of current version of memfault cli needs SDK version 17
+#
+# Adjust the following pointers to reflect your installation
+#
+echo ""
+echo "*** Please reset the top level directories before using this script ***"
+echo ""
+exit
+
 NRF_SRCDIR=~/Documents/Tools/Nordic/NRF5_SDK/nRF5_SDK_17.1.0_ddde560
 MEMFLT_SRCDIR=~/Documents/Tools/MemFault/memfault-firmware-sdk/
-
 PIO_PROJLIB=~/Documents/PlatformIO/Projects/test/lib
+
+
 PIO_NRFLIBDIR=nrf5_sdk
 
 srcFiles=./_srcFiles
