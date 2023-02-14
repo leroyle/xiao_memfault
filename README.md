@@ -46,4 +46,96 @@ assets/MemFault/cpMemfltSrcFiles
 ```
 -- inspect the two above copy scripts and modify the source and destination directories as appropriat for your installation
 
-- download 
+- after the directories have been modified execute the two scripts. Note and fix any reported error messages.
+- to build the app, there are 6 defined targets
+
+These PlatformIO build targets will create an app that supports a command line interface. Once the terminal/JLinkRTTClient is running, type in "help" for a list of commands.
+Note: The Memfault cli targets do not support input backspace. If you mistype a command, just hit enter and try again.
+
+#### Targets for RAK Wisblock
+-- wisblock_term - a Memfault implementation that uses a virtual serial terminal (putty etal) as input/output
+-- wisblock_rtt  - a Memfault implementation that uses the micro's RTT interface and depends on having a Segger Debug module, Segger JLinkRTTClient software and ad connected  debugger GDB or Segger Ozone
+-- wisblock_cli - a custom command line interface that does "NOT" use Memfault functionality at all. Here just for grins.
+
+#### Targets for Seeed Studio Xiao BLE
+-- xiao_term - a Memfault implementation that uses a virtual serial terminal (putty etal) as input/output
+-- xiao_rtt  - a Memfault implementation that uses the micro's RTT interface and depends on having a Segger Debug module, Segger JLinkRTTClient software and ad connected  debugger GDB or Segger Ozone
+-- xiao_cli - a custom command line interface that does "NOT" use Memfault functionality at all. Here just for grins.
+
+#### to build the wisblock_term target
+```
+pio run -e wisblock_term 2>&1 | tee build_log
+```
+#### To upload the build target
+```
+pio run -e wisblock_term -t upload 2>&1 | tee build_log
+```
+
+
+There are three versions of the target defined within the platformio.ini file
+
+* _term - a Memfaul supplied command line interface that supports the Memfault functionality.  This uses a virtual serial terminal as the input/output source
+ 
+* _rtt - a Memfaul supplied command line interface that supports the Memfault functionality.  This the Segger Real Time Transfer (RTT) protocol which requires 
+  * Segger J-Link debug device connected via the boards SWD interface
+  * Segger J-Link terminal client software 
+  * A debugger connected to the target platform, either GDB or Ozone. For this implementation I use Segger Ozone
+
+* _cli - just a simple command line interface that does "not" use Memfault functionality.  This uses a virtual serial terminal as the input/output source
+
+
+
+
+The defined targets
+
+wisblock_rtt  
+wisblock_term  
+wisblock_cli  
+
+xiao_rtt  
+xiao_term  
+xiao_cli  
+
+#### Help output from _term targets
+```
+t> help^M
+clear_core: Clear an existing coredump^M
+drain_chunks: Flushes queued Memfault data. To upload data see https://mflt.io/posting-chunks-with-gdb^M
+export: Export base64-encoded chunks. To upload data see https://mflt.io/chunk-data-export^M
+get_core: Get coredump info^M
+get_device_info: Get device info^M
+test_assert: Trigger memfault assert^M
+test_busfault: Trigger a busfault^M
+test_hardfault: Trigger a hardfault^M
+test_memmanage: Trigger a memory management fault^M
+test_usagefault: Trigger a usage fault^M
+test_log: Writes test logs to log buffer^M
+test_log_capture: Trigger capture of current log buffer contents^M
+test_reboot: Force system reset and track it with a trace event^M
+test_trace: Capture an example trace event^M
+help: Lists all commands^M
+mflt>
+```
+
+#### Help output from _cli targets
+```
+* help
+        Print list of commands
+ * get-led
+        Get led status
+ * get-adc
+        Read adc value
+ * hello
+        Print hello message
+ * stackCheck
+        Dump Stack Statistics
+ * heapCheck
+        Dump Heap Statistics
+ * appVersion
+        Get App Version String
+> 
+```
+
+
+
+
