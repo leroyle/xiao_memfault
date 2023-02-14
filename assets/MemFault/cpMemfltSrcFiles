@@ -246,7 +246,12 @@ EOF
 
 
 # custom fixups
-function customFixes()
+# we must include "memfault/ports/freertos_trace.h" within FreeRTOSConfig.h
+# in order to define traceTASK_CREATE() within the RTOS tasks.c. This so
+# Memfault can include task data within the core file. 
+# For the Adafruit framework we do not need to include a "real" heap_stats.h
+# nor config.h so create dummies
+function fixAdafruitFiles()
 {
 
 # workaround for API collisions, freertos_trace is required for copying 
@@ -258,17 +263,52 @@ function customFixes()
    mkdir -p $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/components/include/memfault/
    touch $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/components/include/memfault/config.h
 
+  mkdir -p $PIO_PROJDIR/include/drivers/
+  cp $PIO_FRAMEWORK_ARDUINO_ADA/cores/nRF5/nordic/nrfx/drivers/nrfx_common.h $PIO_PROJDIR/include/drivers
+
+}
+
+# Update customized memfault files
+# 
+function fixMemfaultFiles()
+{
 # customize Memfault source files
   mkdir -p $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/ports/freertos/src/
   cp $ASSET_DIR/MemfaultSrc/lib/memfault/ports/freertos/src/memfault_freertos_ram_regions.c $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/ports/freertos/src/
   mkdir -p  $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/components/core/src/
   cp $ASSET_DIR/MemfaultSrc/lib/memfault/components/core/src/memfault_log.c $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/components/core/src/
 
-  mkdir -p $PIO_PROJDIR/include/drivers/
-  cp $PIO_FRAMEWORK_ARDUINO_ADA/cores/nRF5/nordic/nrfx/drivers/nrfx_common.h $PIO_PROJDIR/include/drivers
 }
 
-# copyFiles
- customFixes
+# Update the Adafruit Tiny USB library.json file,  
+# required to remove "nrf5_sdk" include file collisions when
+# compiling Adafruit files
+#
+function checkForTinyUSBFixes
+{
+  LIB_JSON=~/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/library.json
+
+  fgrep '"extraScript"' $LIB_JSON > /dev/null
+
+  if [ $? -eq 0 ]
+  then
+       #echo "OK: Found updated files"
+       echo ""
+  else
+       echo "Error: "
+       echo "    The PlatformIO Adafruit Tiny USB library.json must contain an "extraScrip" entry."
+       echo "    File: $LIB_JSON"
+       echo ""
+       echo "    Replacement files can be found within the project at:"
+       echo "    assets/MemFault/AdaFruitFramework/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino"
+  fi
+
+}
+
+ copyFiles
+fixAdafruitFiles
+fixMemfaultFiles
+checkForTinyUSBFixes
+
 #rmFiles
 rm -f $srcFiles
