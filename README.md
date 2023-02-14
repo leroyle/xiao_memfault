@@ -86,16 +86,26 @@ There are three versions of the target defined within the platformio.ini file
 
 
 
-The defined targets
-
+##### The RAK Wireless Wisblock defined targets
+```
 wisblock_rtt  
 wisblock_term  
 wisblock_cli  
+```
 
+##### The Seeed Studio Xiao BLE defined targets
+```
 xiao_rtt  
 xiao_term  
 xiao_cli  
-
+```
+ defined targets
+95
+xiao_rtt  
+96
+xiao_term  
+97
+xi
 #### Help output from _term targets
 ```
 t> help^M
@@ -115,6 +125,23 @@ test_reboot: Force system reset and track it with a trace event^M
 test_trace: Capture an example trace event^M
 help: Lists all commands^M
 mflt>
+```
+#### Help output from _rtt targets
+```
+rtt_cli:~$ help
+Available Memfault Commands:
+crash: trigger a crash
+test_log: writes test logs to log buffer
+trigger_logs: trigger capture of current log buffer contents
+trace: capture trace event
+core_storage_test: verify coredump storage implementation with test patterns
+clear_core: clear the core
+get_core: gets the core
+get_device_info: display device information
+reboot: reboots system and tracks it with a trace event
+export: Can be used to dump chunks to console or post via GDB
+hang: Force a hang to test software watchdog functionality
+rtt_cli:~$ 
 ```
 
 #### Help output from _cli targets
