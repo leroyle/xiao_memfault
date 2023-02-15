@@ -1,0 +1,9 @@
+oo
+PROJ_KEY="ENTER YOUR PROJECT KEY FROM THE MEMFAULT CLOUD"
+
+echo ""
+echo "postLogtoCloud: Add your Memfault project key and then comment out this trap"
+echo ""
+exit
+
+memfault --project-key $PROJ_KEY  post-chunk --encoding sdk_data_export log
