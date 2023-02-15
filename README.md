@@ -1,22 +1,35 @@
 
-# NOTE: This is a PlatformIO project work in progress
+# NOTE: This is a PlatformIO project work in progress.
+## NOTE: Throughout the course of developing this project we on several occasions have blown out bootloader code which has required a reload of the boot loader. This due to our experimenting, not the fault of the Memfaul SDK. If using this project be prepared for the same. This may require reloading via the device SWD/J-Link interface.
 
 #### A simple example implementation of Memfault.com (remote monitoring for Embedded devices)
 Memfault is a framework that allows remote monitoring of your embedded devices.
 
-My main interest is in its ability to upload core dump data for analysis on the cloud platform. While typically the data is uploaded via a wifi or BLE connection I'm thinking/hoping we can upload at least limited function trace back info via LoRaWAN. This remains to be seen.
+Our main interest is in its ability to upload core dump data for analysis on the cloud platform. While typically the data is uploaded via a WiFi or BLE connection I'm thinking/hoping we can upload at least limited function trace back info via LoRaWAN. This remains to be seen.
 
 One of several Memfault videos:  https://www.youtube.com/watch?v=ge-ebleCi8o
 
-I've been messing with it on the Seeed Studio Xiao BLE as well as the RAK Wisblock dev board for a couple of weeks. At this point just using a very simple "hello world" application using PlatformIO.
+We have been messing with it on the Seeed Studio Xiao BLE as well as the RAK Wisblock dev board for a couple of weeks. At this point just using a very simple "hello world" application using PlatformIO.
 
-Memfault on nrf52 uses the Nordic NRF SDK and lately is now supporting the newer Nordic nRFConnect SDK. Both of the nRF52 boards I'm using are using the Adafruit nRF52 implementation for runtime support.
+#### Integrating Memfault into this project
+The folks at Memfault have provides guides for integrating their SDK into your microcontoller environment (https://docs.memfault.com/docs/mcu/introduction). While these docs did not specifically mention our target nRF52 using nRF SDK with the provided example and the docs we were able to get things working.
+
+Our approach was to start with their SDK provided example found at
+```
+ ~/Memfault_SDK_INSTALL_DIR/examples/nrf5/apps/memfault_demo_app
+```
+Once that was working we then merged that with our PlatformIO Adafruit framework used by the target dev boards.
+
+Memfault on nrf52 uses the Nordic NRF SDK and lately is now supporting the newer Nordic nRFConnect SDK. Both of the nRF52 boards we are using are using the Adafruit nRF52 implementation for runtime support.
  
 We do have some Memfault/Nordic API collisions so the build is a customized one. The Memfault code is built against the Nordic SDK include files, while the Adafruit runtime uses its own version of Nordic support files.
 
-There are copy scripts that will copy in the appropiate files thus this example requires minimal hand editing of the Memfault or Adafruit library files, though there are a few.
+There are copy scripts that will copy in the appropriate files thus this example requires minimal hand editing of the Memfault or Adafruit library files, though there are a few.
 
-As memtioned my work is still in the works and only within a very simple Hello World app. If anyone is interested in poking at this do let me know. I need to clean up the repo a bit, but what I have is at:
+As mentioned our work is still in the works and only within a very simple Hello World app.
+
+### Disclaimer: the folks at Memfault have not condoned this approach. this approach may prove to fall apart within a real life application. It would be best to reconcile things such that all pieces of your app use the same version of common API calls...  
+If anyone is interested in poking at this do let me know. We need to clean up the repo a bit, but what we have is at:
 https://github.com/leroyle/xiao_memfault
 
 
@@ -44,7 +57,7 @@ gcc compiler - toolchain-gccarmnoneeabi @ 1.70201.0 (7.2.1)
 assets/MemFault/cpNrfSrcFiles
 assets/MemFault/cpMemfltSrcFiles
 ```
--- inspect the two above copy scripts and modify the source and destination directories as appropriat for your installation
+-- inspect the two above copy scripts and modify the source and destination directories as appropriate for your installation
 
 - after the directories have been modified execute the two scripts. Note and fix any reported error messages.
 - to build the app, there are 6 defined targets
@@ -74,12 +87,12 @@ pio run -e wisblock_term -t upload 2>&1 | tee build_log
 
 There are three versions of the target defined within the platformio.ini file
 
-* _term - a Memfaul supplied command line interface that supports the Memfault functionality.  This uses a virtual serial terminal as the input/output source
+* _term - a Memfault supplied command line interface that supports the Memfault functionality.  This uses a virtual serial terminal as the input/output source
  
-* _rtt - a Memfaul supplied command line interface that supports the Memfault functionality.  This the Segger Real Time Transfer (RTT) protocol which requires 
+* _rtt - a Memfault supplied command line interface that supports the Memfault functionality.  This the Segger Real Time Transfer (RTT) protocol which requires 
   * Segger J-Link debug device connected via the boards SWD interface
   * Segger J-Link terminal client software 
-  * A debugger connected to the target platform, either GDB or Ozone. For this implementation I use Segger Ozone
+  * A debugger connected to the target platform, either GDB or Ozone. For this implementation we use Segger Ozone
 
 * _cli - just a simple command line interface that does "not" use Memfault functionality.  This uses a virtual serial terminal as the input/output source
 
@@ -108,22 +121,22 @@ xiao_term  
 xi
 #### Help output from _term targets
 ```
-t> help^M
-clear_core: Clear an existing coredump^M
-drain_chunks: Flushes queued Memfault data. To upload data see https://mflt.io/posting-chunks-with-gdb^M
-export: Export base64-encoded chunks. To upload data see https://mflt.io/chunk-data-export^M
-get_core: Get coredump info^M
-get_device_info: Get device info^M
-test_assert: Trigger memfault assert^M
-test_busfault: Trigger a busfault^M
-test_hardfault: Trigger a hardfault^M
-test_memmanage: Trigger a memory management fault^M
-test_usagefault: Trigger a usage fault^M
-test_log: Writes test logs to log buffer^M
-test_log_capture: Trigger capture of current log buffer contents^M
-test_reboot: Force system reset and track it with a trace event^M
-test_trace: Capture an example trace event^M
-help: Lists all commands^M
+t> help
+clear_core: Clear an existing coredump
+drain_chunks: Flushes queued Memfault data. To upload data see https://mflt.io/posting-chunks-with-gdb
+export: Export base64-encoded chunks. To upload data see https://mflt.io/chunk-data-export
+get_core: Get coredump info
+get_device_info: Get device info
+test_assert: Trigger memfault assert
+test_busfault: Trigger a busfault
+test_hardfault: Trigger a hardfault
+test_memmanage: Trigger a memory management fault
+test_usagefault: Trigger a usage fault
+test_log: Writes test logs to log buffer
+test_log_capture: Trigger capture of current log buffer contents
+test_reboot: Force system reset and track it with a trace event
+test_trace: Capture an example trace event
+help: Lists all commands
 mflt>
 ```
 #### Help output from _rtt targets
@@ -163,6 +176,21 @@ rtt_cli:~$
 > 
 ```
 
+
+####Testing the implementation
+Execution:
+
+At the "mflt>" prompt enter "test_hardfault". 
+The serial terminal will freeze for a few seconds and terminate. At this point restart the serial terminal. At the next "mflt>" enter "get_core". This should show a "Has coredump with size: XXXX  ?"
+Now enter the cli "export" command.
+This will result in a bunch of base64 strings being dumped to the serial terminal. 
+Copy the dumped data or use the virtual terminal's log file to a file of any name, for instance memflt.log.
+
+Within the projects assets directory is a python script that can be used to upload the data to the Memfault cloud. One need not parse the terminal log file, you can upload the entire file, the cloud processing will handle the decoding.
+
+once you have dumped the data via "export" another "get_core" the cli should report "No coredump present!".
+
+Memfault has much more functionality that uploading core dump data, this demo only scratches the surface of it's capability. Refer to the main Memfault site at www.memfault.com or Memfault videos on YouTube for more details.
 
 
 
