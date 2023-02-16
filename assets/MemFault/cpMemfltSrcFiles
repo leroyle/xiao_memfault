@@ -272,6 +272,24 @@ function fixAdafruitFiles()
   mkdir -p $PIO_PROJDIR/include/drivers/
   cp $PIO_FRAMEWORK_ARDUINO_ADA/cores/nRF5/nordic/nrfx/drivers/nrfx_common.h $PIO_PROJDIR/include/drivers
 
+  # default Adafruit main.cpp file
+  fgrep nrf_drv_clock_init  $PIO_FRAMEWORK_ARDUINO_ADA/cores/nRF5/main.cpp > /dev/null
+  if [ $? -eq 0 ]
+  then
+  	echo ""
+  else
+       echo "Error: "
+       echo "    The PlatformIO Adafruit file, cores/nRF5/main.cpp, needs to be updated."
+       echo ""
+       echo "    A sample replacement file can be found within this project at:"
+       echo "    assets/MemFault/AdaFruitFramework/framework-arduinoadafruitnrf52/cores/nRF5/main.cpp"
+       echo ""
+       echo "    Merge the changes contained with this file, look for instances of \"#ifdef MEMFAULT_LIB\""
+       echo "    Location of file to be updated:"
+       echo "$PIO_FRAMEWORK_ARDUINO_ADA/cores/nRF5/main.cpp"
+       echo ""
+  fi
+
 }
 
 # Update customized memfault files
@@ -311,10 +329,10 @@ function checkForTinyUSBFixes
 
 }
 
- copyFiles
+# copyFiles
 fixAdafruitFiles
-fixMemfaultFiles
-checkForTinyUSBFixes
+#fixMemfaultFiles
+#checkForTinyUSBFixes
 
 #rmFiles
 rm -f $srcFiles
