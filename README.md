@@ -59,6 +59,20 @@ Memfault SDK
 Memfault CLI
 * used to upload core data to the Memfault cloud (Note requires Python 3.x
 
+Seeed Studio Xiao BLE Bootloader Version:
+   * UF2 Bootloader 0.6.1 lib/nrfx (v2.0.0) lib/tinyusb (0.10.1-293-gaf8e5a90) lib/uf2 (remotes/origin/configupdate-9-gadbb8c7)
+   * Model: Seeed XIAO nRF52840
+   * Board-ID: Seeed_XIAO_nRF52840_Sense
+   * SoftDevice: S140 version 7.3.0
+   * Date: Nov 12 2021
+
+RAK Wireless Wisblock Bootloader Version:
+   * UF2 Bootloader 0.4.2 lib/nrfx (v2.0.0) lib/tinyusb (0.10.1-293-gaf8e5a90) lib/uf2 (remotes/origin/configupdate-9-gadbb8c7)
+   * Model: WisBlock RAK4631 Board
+   * Board-ID: WisBlock-RAK4631-Board
+   * Date: Dec  1 2021
+   * SoftDevice: S140 6.1.1
+
 There may be other dependencies that we have satisfied long ago and are not directly aware of.
 
 https://docs.memfault.com/docs/ci/install-memfault-cli/
