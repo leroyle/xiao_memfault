@@ -329,10 +329,10 @@ function checkForTinyUSBFixes
 
 }
 
-# copyFiles
+copyFiles
 fixAdafruitFiles
-#fixMemfaultFiles
-#checkForTinyUSBFixes
+fixMemfaultFiles
+checkForTinyUSBFixes
 
 #rmFiles
 rm -f $srcFiles
