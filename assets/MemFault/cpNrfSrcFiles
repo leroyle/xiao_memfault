@@ -11,7 +11,9 @@ exit
 
 NRF_SRCDIR=~/Documents/Tools/Nordic/NRF5_SDK/nRF5_SDK_17.1.0_ddde560
 MEMFLT_SRCDIR=~/Documents/Tools/MemFault/memfault-firmware-sdk/
+PIO_PROJDIR=~/Documents/PlatformIO/Projects/test/
 PIO_PROJLIB=~/Documents/PlatformIO/Projects/test/lib
+ASSET_DIR=$PIO_PROJDIR/assets/MemFault
 
 
 PIO_NRFLIBDIR=nrf5_sdk
@@ -33,6 +35,13 @@ then
  	echo "Missing PlatformIO project destination directory \"$PIO_PROJLIB\""
 	exit
 fi
+
+if [ ! -d $ASSET_DIR ]
+then
+        echo "Missing asset directory containing customized files \"$ASSET_DIR\""
+        exit
+fi
+
 
 function cpFiles() 
 {
@@ -211,10 +220,15 @@ function cpExtras()
  mkdir -p $PIO_PROJLIB/$PIO_NRFLIBDIR/components/libraries/util/
   cp $MEMFLT_SRCDIR/examples/nrf5/apps/memfault_demo_app/third_party/memfault/sdk_overrides/app_error.h $PIO_PROJLIB/$PIO_NRFLIBDIR/components/libraries/util
 
+# need slightly modified versions of the default nRF SDK files
+ cp $ASSET_DIR/NRFSDKSrc/components/libraries/timer/app_timer.c $PIO_PROJLIB/$PIO_NRFLIBDIR/components/libraries/timer
+ cp $ASSET_DIR/NRFSDKSrc/modules/nrfx/soc/nrfx_irqs_nrf52840.h $PIO_PROJLIB/$PIO_NRFLIBDIR/modules/nrfx/soc/
+
 }
 
 cpFiles
 cpExtras
+
 #rmFiles
 
 exit
