@@ -1,0 +1,10 @@
+
+memfault/components/
+memfault/examples/
+memfault/ports/
+nrf5_sdk/components/
+nrf5_sdk/external/
+nrf5_sdk/integration/
+nrf5_sdk/modules/
+
+

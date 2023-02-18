@@ -47,8 +47,7 @@
 			"-I modules/nrfx/hal",
 			"-I modules/nrfx/drivers/include",
 			"-I modules/nrfx/mdk",
-			"-I FreeRTOS",
-			"-I Source/LAL"
+			"-I FreeRTOS"
 		],
         	"extraScript": "extra_script.py"
 

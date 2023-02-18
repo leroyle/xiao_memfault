@@ -1,4 +1,4 @@
-
+#ifdef MEMFAULT_LIB
 #include <Arduino.h>
 #include "Adafruit_TinyUSB.h"
 
@@ -235,3 +235,4 @@ void term_CLI_Loop(void)
 }
 #endif
 
+#endif

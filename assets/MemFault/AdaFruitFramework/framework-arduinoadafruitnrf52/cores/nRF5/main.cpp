@@ -74,22 +74,11 @@ static void loop_task(void* arg)
   }
 }
 
-#ifdef MEMFAULT_LIB
-extern "C" {
-void nrf_drv_clock_init();
-//void   nrf_drv_clock_lfclk_request();
-}
-#endif
-
 // \brief Main entry point of Arduino application
 int main( void )
 {
   init();
   initVariant();
-
-#ifdef MEMFAULT_LIB
-nrf_drv_clock_init();
-#endif
 
 #if CFG_SYSVIEW
   SEGGER_SYSVIEW_Conf();
