@@ -1,4 +1,4 @@
-#ifdef MEMFAULT_LIB
+#ifdef MEMFAULT
 #include <Arduino.h>
 #include "Adafruit_TinyUSB.h"
 

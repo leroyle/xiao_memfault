@@ -1,4 +1,4 @@
-#ifdef MEMFAULT_LIB
+#ifdef MEMFAULT
 //! @file
 //!
 //! Copyright (c) Memfault, Inc.

@@ -60,7 +60,7 @@ void loop() {
 #include "Adafruit_TinyUSB.h"
 // #include <LoRaWan-RAK4630.h> //http://librarymanager/All#SX126x
 #include <SPI.h>
-#ifdef MEMFAULT_LIB
+#ifdef MEMFAULT
 #include "memfaultMain.h"
 #endif
 
@@ -159,7 +159,9 @@ void setup()
     delay(500);
   Serial.println("=====================================");
   Serial.println("Welcome to MEMFAULT LoRaWan, intializing!!!");
+#ifdef MEMFAULT
     memfaultSetup();
+#endif
   Serial.println("=====================================");
   Serial.println(" MEMFAULT LoRaWan ready to go!!!");
   Serial.flush();
@@ -277,22 +279,13 @@ void loop()
     }
 //#endif
 
-//#ifdef MEMFAULT_LIB
-//   if (initCount == 10)
-//   {
-//      memfaultSetup();
-
-//   }
 // #endif
   // Put your application tasks here, like reading of sensors,
   // Controlling actuators and/or other functions. 
 
 
-#ifdef MEMFAULT_LIB
-//  if( initCount > 10)
-//  {
+#ifdef MEMFAULT
     memfaultLoop();
-//  }
 #endif
 }
 
