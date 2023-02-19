@@ -2,6 +2,12 @@
 # requires the memfault nrf5 sdk sample app to be built
 #
 
+echo ""
+echo "  NOTE:  Obsolete, do not use"
+echo ""
+
+exit
+
 echo "Creating nRF5 SDK archive file"
 sleep 2
 

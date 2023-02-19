@@ -1,19 +1,41 @@
 
+./NRFSDKSrc/components/libraries/timer/app_timer.c
+  - prevent override of the FreeRTOS defined RTC1_IRQHandler()
+./NRFSDKSrc/modules/nrfx/soc/nrfx_irqs_nrf52840.h
+  - make sure we define RTC1_IRQHandler to use FreeRTOS xPortSysTickHandler
 
 
- to test memfault
-In either case you must start a terminal window as we wait for Serial to become active in
-setup().
+./AdaFruitFramework/framework-arduinoadafruitnrf52/libraries/SPI/extra_script.py
+./AdaFruitFramework/framework-arduinoadafruitnrf52/libraries/SPI/library.json
+   - to filter out unwanted include files when SPI is built
 
-1. connect JLink and board
-2. upload app
-3. connect with GDB or Ozone
-4. start  JLinkRTTClient  ( it looks to connect to a debugger)
+./AdaFruitFramework/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/extra_script.py
+./AdaFruitFramework/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/library.json
+   - to filter out unwanted include files when TinyUSB is built
 
-or 
+./AdaFruitFramework/framework-arduinoadafruitnrf52/cores/nRF5/main.cpp
+   - may not be anything any more???
 
+./AdaFruitFramework/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/drivers/src/nrfx_power.c
+   - sets NRFX_POWER_ENABLED 1, might be better in sdk_config.h??
 
-1. connect JLink and board
-2. Upload app
-3. start JLinkRTTViewer, select logging menu
- Note: Not sure, might be best to hit enter button on viewer rather than enter key???
+./AdaFruitFramework/framework-arduinoadafruitnrf52/cores/nRF5/freertos/config/FreeRTOSConfig.h
+   - ?????
+   
+./SX126x-Arduino/extra_script.py
+./SX126x-Arduino/library.json
+   - to filter out unwanted include files when the lib is built
+
+./MemfaultSrc/lib/memfault/ports/freertos/src/memfault_freertos_ram_regions.c
+   - customize for our environment, upped the number of  RTOS tasks
+./MemfaultSrc/lib/memfault/components/core/src/memfault_log.c
+   -  updated to print Memfault message to the serial terminal if running in
+      RTT mode
+
+./cpMemfltSrcFiles
+   - script to copy/update files in lib/memfault/
+./cpNrfSrcFiles
+   - script to copy/update files in lib/nrf5_src/
+
+./postLogtoCloud
+   - send content of a file named "log" to the Memfault cloud

@@ -903,7 +903,7 @@ static uint32_t timer_stop_op_schedule(timer_node_t * p_node,
  *
  * @details Checks for timeouts, and executes timeout handlers for expired timers.
  */
-#ifndef MEMFAULT_LIB
+#ifndef MEMFAULT
 void RTC1_IRQHandler(void)
 {
     // Clear all events (also unexpected ones)
@@ -918,7 +918,7 @@ void RTC1_IRQHandler(void)
     timer_timeouts_check();
 }
 
-#endif  // MEMFAULT_LIB
+#endif  // MEMFAULT
 
 
 /**@brief Function for handling the SWI interrupt.

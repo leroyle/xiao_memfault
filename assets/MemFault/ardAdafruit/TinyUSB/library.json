@@ -1,7 +1,0 @@
-{
-    "name": "Adafruit TinyUSB Library",
-    "build": {
-        "libArchive": false,
- 	"extraScript": "extra_script.py"
-    }
-}
