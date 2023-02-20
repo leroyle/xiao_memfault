@@ -1,24 +1,29 @@
 
-#ifdef BASIC_MAIN_NO_LORA
+#ifdef INCLUDE_NO_LORA
 #include <Arduino.h>
 #include "Adafruit_TinyUSB.h"
 
 #include "memfaultMain.h"
 
+#define pdMSTOTICKS( xTimeInMs ) (( TickType_t ) xTimeInMs * configTICK_RATE_HZ / 1000 )
 
 void setup() {
 
 
     Serial.begin(115200);
+    delay(500);
     while (!Serial) taskYIELD();
 
 #ifdef TERM_CLI
+    Serial.println("=====================================");
     Serial.println("Starting TERM_CLI");
 #endif
 #ifdef MEMFAULT_RTT
+    Serial.println("=====================================");
     Serial.println("Starting MEMFAULT_RTT");
 #endif
 #ifdef MEMFAULT_TERM
+    Serial.println("=====================================");
     Serial.println("Starting MEMFAULT_TERM");
 #endif
 
@@ -28,13 +33,33 @@ void setup() {
 
 
 
+uint32_t lastTime=0;
+uint32_t delayTime = pdMS_TO_TICKS(10 * 1000* 10);
+uint32_t heartBeatCount;
+uint32_t initCount=0;
 void loop() {
+
+//#ifdef ADD_HEARTBEAT
+    uint32_t currTime= millis();
+    if(currTime > lastTime + delayTime)
+    {
+        Serial.print("Hello World!: ");
+        Serial.println(heartBeatCount++);
+        Serial.flush();
+        lastTime = currTime;
+    }
+//#endif
 
     memfaultLoop();
 }
 
-#else  // BASIC_MAIN_NO_LORA
+#else  // INCLUDE_NO_LORA
 
+/**
+  *  The INCLUDE_NO_LORA , if not defined includes LoRa implementation files
+  *  
+  *
+*/
 #define pdMSTOTICKS( xTimeInMs ) (( TickType_t ) xTimeInMs * configTICK_RATE_HZ / 1000 )
 
 /**
@@ -60,23 +85,33 @@ void loop() {
  */
 #include <Arduino.h>
 #include "Adafruit_TinyUSB.h"
-#ifdef LAL_LORA
-#include <LoRaWan-RAK4630.h> //http://librarymanager/All#SX126x
-#endif
-#include <SPI.h>
+
+// LoRaWan credentials
+#include "loraCreds.h"
 #ifdef MEMFAULT
 #include "memfaultMain.h"
 #endif
+/** 
+  The INCLUDE_LORA_API_CALLS adds in actual calls to the LoRa subsystem
+*/
 
-#ifdef LAL_LORA
+#ifdef INCLUDE_LORA_API_CALLS
+#include <LoRaWan-RAK4630.h> //http://librarymanager/All#SX126x
+#endif
+
 // RAK4630 supply two LED
 #ifndef LED_BUILTIN
 #define LED_BUILTIN 35
 #endif
 
+#include <SPI.h>
+
+
 #ifndef LED_BUILTIN2
 #define LED_BUILTIN2 36
 #endif
+
+#ifdef INCLUDE_LORA_API_CALLS
 
 bool doOTAA = true;   // OTAA is used by default.
 #define SCHED_MAX_EVENT_DATA_SIZE APP_TIMER_SCHED_EVENT_DATA_SIZE /**< Maximum size of scheduler events. */
@@ -107,24 +142,6 @@ static void send_lora_frame(void);
 static lmh_callback_t g_lora_callbacks = {BoardGetBatteryLevel, BoardGetUniqueId, BoardGetRandomSeed,
                                         lorawan_rx_handler, lorawan_has_joined_handler, lorawan_confirm_class_handler, lorawan_join_failed_handler
                                        };
-
-#define PROD_CONSOLE
-
-#ifdef PROD_CONSOLE
-uint8_t nodeDeviceEUI[8] = {0x24, 0x80, 0x24, 0xB8, 0xD3, 0x03, 0xB4, 0xFD};
-uint8_t nodeAppEUI[8] = {0x95, 0x61, 0x2A, 0x1C, 0x27, 0x22, 0xEE, 0x26};
-uint8_t nodeAppKey[16] = {0x88, 0x19, 0x97, 0xC6, 0x18, 0xEA, 0x8C, 0xAA, 0xD5, 0x16, 0xDA, 0x69, 0x4F, 0x07, 0xC0, 0x09};
-#else
-//Staging
-
-uint8_t nodeDeviceEUI[8] = {0x94, 0x67, 0xC7, 0xFE, 0xC7, 0xFC, 0xE2, 0x93};
-// B7E3ECEC3CCFAC0F
-uint8_t nodeAppEUI[8] = {0xB7, 0xE3, 0xEC, 0xEC, 0x3C, 0xCF, 0xAC, 0x0F};
-//  A8454E436FCAA1366A1D737C45763DF3
-uint8_t nodeAppKey[16] = {0xA8, 0x45, 0x4E, 0x43, 0x6F, 0xCA, 0xA1, 0x36, 0x6A, 0x1D, 0x73, 0x7C, 0x45, 0x76, 0x3D, 0xF3};
-
-#endif
-
 // Private defination
 #define LORAWAN_APP_DATA_BUFF_SIZE 64                     /**< buffer size of the data to be transmitted. */
 #define LORAWAN_APP_INTERVAL 20000                        /**< Defines for user timer, the application data transmission interval. 20s, value in [ms]. */
@@ -136,7 +153,8 @@ static uint32_t timers_init(void);
 static uint32_t count = 0;
 static uint32_t count_fail = 0;
 
-#endif //LAL_LORA
+#endif //INCLUDE_LORA_API_CALLS
+
 void setup()
 {
   pinMode(LED_BUILTIN, OUTPUT);
@@ -173,7 +191,7 @@ void setup()
   Serial.println(" MEMFAULT LoRaWan ready to go!!!");
   Serial.flush();
 
-#ifdef LAL_LORA
+#ifdef INCLUDE_LORA_API_CALLS
   // Initialize LoRa chip.
   lora_rak4630_init();
 
@@ -269,7 +287,8 @@ void setup()
   // Start Join procedure
   lmh_join();
 
-#endif // LAL_LORA
+#endif // INCLUDE_LORA_API_CALLS
+
 }
 
 uint32_t lastTime=0;
@@ -278,7 +297,7 @@ uint32_t heartBeatCount;
 uint32_t initCount=0;
 void loop()
 {
-//#ifdef LAL_HEARTBEAT
+//#ifdef ADD_HEARTBEAT
     uint32_t currTime= millis();
     if(currTime > lastTime + delayTime)
     {
@@ -289,7 +308,6 @@ void loop()
     }
 //#endif
 
-// #endif
   // Put your application tasks here, like reading of sensors,
   // Controlling actuators and/or other functions. 
 
@@ -299,7 +317,7 @@ void loop()
 #endif
 }
 
-#ifdef LAL_LORA
+#ifdef INCLUDE_LORA_API_CALLS
 /**@brief LoRa function for handling HasJoined event.
  */
 void lorawan_has_joined_handler(void)
@@ -400,5 +418,5 @@ uint32_t timers_init(void)
   return 0;
 }
 
-#endif // LAL_LORA
-#endif  // BASIC_MAIN_NO_LORA
+#endif // INCLUDE_LORA_API_CALLS
+#endif  // INCLUDE_NO_LORA

@@ -10,6 +10,10 @@
 #include "app_error.h"
 #include "app_timer.h"
 
+#ifndef TERM_CLI
+ #define ADD_WATCHDOG
+#endif
+
 
 extern "C" {
 #include "nrf_pwr_mgmt.h"

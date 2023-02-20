@@ -87,8 +87,10 @@
 //
 // Hardware & Software Watchdog configuration
 //
+// We need to define RTC1_ENABLED as it's used by FreeRTOS
 
 #define RTC_ENABLED 1
+#define RTC1_ENABLED 1
 #define RTC2_ENABLED 1
 #define WDT_ENABLED 1
 
