@@ -3,6 +3,8 @@
 /** 
   add your LoRaWan console creds
 */
+#error:  "Error: add your LoRaWan Credentials here"
+
 #define PROD_CONSOLE
 
 #ifdef PROD_CONSOLE
