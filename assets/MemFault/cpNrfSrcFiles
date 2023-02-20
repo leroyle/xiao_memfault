@@ -114,7 +114,7 @@ components/libraries/ringbuf/nrf_ringbuf.c
 components/libraries/ringbuf/nrf_ringbuf.h
 components/libraries/stack_guard/nrf_stack_guard.h
 components/libraries/strerror/nrf_strerror.h
-components/libraries/timer/app_timer.c
+components/libraries/timer/app_timer_freertos.c
 components/libraries/timer/app_timer.h
 components/libraries/util/app_error.h
 components/libraries/util/app_error_weak.h
@@ -221,7 +221,6 @@ function cpExtras()
   cp $MEMFLT_SRCDIR/examples/nrf5/apps/memfault_demo_app/third_party/memfault/sdk_overrides/app_error.h $PIO_PROJLIB/$PIO_NRFLIBDIR/components/libraries/util
 
 # need slightly modified versions of the default nRF SDK files
- cp $ASSET_DIR/NRFSDKSrc/components/libraries/timer/app_timer.c $PIO_PROJLIB/$PIO_NRFLIBDIR/components/libraries/timer
  cp $ASSET_DIR/NRFSDKSrc/modules/nrfx/soc/nrfx_irqs_nrf52840.h $PIO_PROJLIB/$PIO_NRFLIBDIR/modules/nrfx/soc/
 
 }

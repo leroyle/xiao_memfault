@@ -284,7 +284,7 @@ function fixAdafruitFiles()
        echo "    A sample replacement file can be found within this project at:"
        echo "    assets/MemFault/AdaFruitFramework/framework-arduinoadafruitnrf52/cores/nRF5/main.cpp"
        echo ""
-       echo "    Merge the changes contained with this file, look for instances of \"#ifdef MEMFAULT_LIB\""
+       echo "    Merge the changes contained with this file, look for instances of \"#ifdef MEMFAULT\""
        echo "    Location of file to be updated:"
        echo "$PIO_FRAMEWORK_ARDUINO_ADA/cores/nRF5/main.cpp"
        echo ""

@@ -118,11 +118,11 @@ extern "C" {
 #define nrfx_wdt_irq_handler        WDT_IRQHandler
 
 // RTC1_IRQn
-#ifdef MEMFAULT_LIB
+#ifdef MEMFAULT
 #define xPortSysTickHandler     RTC1_IRQHandler
 #else
 #define nrfx_rtc_1_irq_handler      RTC1_IRQHandler
-#endif // MEMFAULT_LIB
+#endif // MEMFAULT
 
 // QDEC_IRQn
 #define nrfx_qdec_irq_handler       QDEC_IRQHandler

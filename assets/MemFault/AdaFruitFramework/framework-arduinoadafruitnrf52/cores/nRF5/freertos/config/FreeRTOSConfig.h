@@ -34,7 +34,7 @@
 #include "nrf_soc.h"
 #endif
 
-#ifdef MEMFAULT_LIB
+#ifdef MEMFAULT
 #include "memfault/ports/freertos_trace.h"
 #endif
 

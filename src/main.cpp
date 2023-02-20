@@ -35,6 +35,8 @@ void loop() {
 
 #else  // BASIC_MAIN_NO_LORA
 
+#define pdMSTOTICKS( xTimeInMs ) (( TickType_t ) xTimeInMs * configTICK_RATE_HZ / 1000 )
+
 /**
  * @file LoRaWAN_OTAA_ABP.ino
  * @author rakwireless.com
@@ -58,7 +60,9 @@ void loop() {
  */
 #include <Arduino.h>
 #include "Adafruit_TinyUSB.h"
-// #include <LoRaWan-RAK4630.h> //http://librarymanager/All#SX126x
+#ifdef LAL_LORA
+#include <LoRaWan-RAK4630.h> //http://librarymanager/All#SX126x
+#endif
 #include <SPI.h>
 #ifdef MEMFAULT
 #include "memfaultMain.h"
@@ -77,9 +81,10 @@ void loop() {
 bool doOTAA = true;   // OTAA is used by default.
 #define SCHED_MAX_EVENT_DATA_SIZE APP_TIMER_SCHED_EVENT_DATA_SIZE /**< Maximum size of scheduler events. */
 #define SCHED_QUEUE_SIZE 60										  /**< Maximum number of events in the scheduler queue. */
-#define LORAWAN_DATERATE DR_0									  /*LoRaMac datarates definition, from DR_0 to DR_5*/
-#define LORAWAN_TX_POWER TX_POWER_5							/*LoRaMac tx power definition, from TX_POWER_0 to TX_POWER_15*/
-#define JOINREQ_NBTRIALS 3										  /**< Number of trials for the join request. */
+#define LORAWAN_DATERATE DR_3									  /*LoRaMac datarates definition, from DR_0 to DR_5*/
+// LAL#define LORAWAN_TX_POWER TX_POWER_5							/*LoRaMac tx power definition, from TX_POWER_0 to TX_POWER_15*/
+#define LORAWAN_TX_POWER TX_POWER_14							/*LoRaMac tx power definition, from TX_POWER_0 to TX_POWER_15*/
+#define JOINREQ_NBTRIALS 10										  /**< Number of trials for the join request. */
 DeviceClass_t g_CurrentClass = CLASS_A;					/* class definition*/
 LoRaMacRegion_t g_CurrentRegion = LORAMAC_REGION_US915;    /* Region:EU868*/
     
@@ -88,7 +93,7 @@ uint8_t gAppPort = LORAWAN_APP_PORT;							        /* data port*/
 
 /**@brief Structure containing LoRaWan parameters, needed for lmh_init()
 */
-static lmh_param_t g_lora_param_init = {LORAWAN_ADR_ON, LORAWAN_DATERATE, LORAWAN_PUBLIC_NETWORK, JOINREQ_NBTRIALS, LORAWAN_TX_POWER, LORAWAN_DUTYCYCLE_OFF};
+static lmh_param_t g_lora_param_init = {LORAWAN_ADR_OFF, LORAWAN_DATERATE, LORAWAN_PUBLIC_NETWORK, JOINREQ_NBTRIALS, LORAWAN_TX_POWER, LORAWAN_DUTYCYCLE_OFF};
 
 // Foward declaration
 static void lorawan_has_joined_handler(void);
@@ -138,7 +143,9 @@ void setup()
   digitalWrite(LED_BUILTIN, LOW);
 
   // Initialize Serial for debug output
+#ifdef LAL_WAIT
   time_t timeout = millis();
+#endif
   Serial.begin(115200);
 
   while (!Serial) taskYIELD();
@@ -169,6 +176,9 @@ void setup()
 #ifdef LAL_LORA
   // Initialize LoRa chip.
   lora_rak4630_init();
+
+  TickType_t xDelay = pdMSTOTICKS(2000);
+  vTaskDelay(xDelay);
 
   Serial.println("=====================================");
   Serial.println("Welcome to RAK4630 LoRaWan!!!");
@@ -264,7 +274,7 @@ void setup()
 
 uint32_t lastTime=0;
 uint32_t delayTime = pdMS_TO_TICKS(10 * 1000* 10);
-uint32_t count;
+uint32_t heartBeatCount;
 uint32_t initCount=0;
 void loop()
 {
@@ -273,7 +283,7 @@ void loop()
     if(currTime > lastTime + delayTime)
     {
         Serial.print("Hello World!: ");
-        Serial.println(count++);
+        Serial.println(heartBeatCount++);
         Serial.flush();
         lastTime = currTime;
     }

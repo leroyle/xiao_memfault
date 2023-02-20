@@ -129,4 +129,4 @@ static void prv_help_cmd(nrf_cli_t const * p_cli, size_t argc, char **argv) {
 }
 NRF_CLI_CMD_REGISTER(help, NULL, "Display available memfault commands", prv_help_cmd);
 
-#endif // MEMFAULT_LIB
+#endif // MEMFAULT

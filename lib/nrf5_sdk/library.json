@@ -15,7 +15,7 @@
         "libArchive": false,
 		"flags": [
 			" -D NRF5_SDK_INCS",
-			" -D MEMFAULT_LIB",
+			" -D MEMFAULT",
 			"-Iinclude",
 			"-I external/segger_rtt",
 			"-I ../../include/FreeRTOS",

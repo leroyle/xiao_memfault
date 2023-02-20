@@ -1,6 +1,4 @@
 
-./NRFSDKSrc/components/libraries/timer/app_timer.c
-  - prevent override of the FreeRTOS defined RTC1_IRQHandler()
 ./NRFSDKSrc/modules/nrfx/soc/nrfx_irqs_nrf52840.h
   - make sure we define RTC1_IRQHandler to use FreeRTOS xPortSysTickHandler
 
