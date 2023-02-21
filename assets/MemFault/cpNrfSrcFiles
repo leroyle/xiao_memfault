@@ -116,7 +116,6 @@ components/libraries/stack_guard/nrf_stack_guard.h
 components/libraries/strerror/nrf_strerror.h
 components/libraries/timer/app_timer_freertos.c
 components/libraries/timer/app_timer.h
-components/libraries/util/app_error.h
 components/libraries/util/app_error_weak.h
 components/libraries/util/app_util.h
 components/libraries/util/app_util_platform.c
@@ -176,7 +175,6 @@ modules/nrfx/drivers/include/nrfx_clock.h
 modules/nrfx/drivers/include/nrfx_power_clock.h
 modules/nrfx/drivers/include/nrfx_rtc.h
 modules/nrfx/drivers/include/nrfx_wdt.h
-modules/nrfx/drivers/nrfx_common.h
 modules/nrfx/drivers/nrfx_errors.h
 modules/nrfx/drivers/src/nrfx_clock.c
 modules/nrfx/drivers/src/nrfx_rtc.c
@@ -214,13 +212,16 @@ modules/nrfx/templates/nRF52840/nrfx_config.h
 EOF
 
 
+##
+# See README for details
 function cpExtras()
 {
 # We need the Memfault version of app_error.h
  mkdir -p $PIO_PROJLIB/$PIO_NRFLIBDIR/components/libraries/util/
   cp $MEMFLT_SRCDIR/examples/nrf5/apps/memfault_demo_app/third_party/memfault/sdk_overrides/app_error.h $PIO_PROJLIB/$PIO_NRFLIBDIR/components/libraries/util
 
-# need slightly modified versions of the default nRF SDK files
+# need slightly modified version of the Adafruit version of the default
+#  nRF SDK files
  cp $ASSET_DIR/NRFSDKSrc/modules/nrfx/soc/nrfx_irqs_nrf52840.h $PIO_PROJLIB/$PIO_NRFLIBDIR/modules/nrfx/soc/
 
 }

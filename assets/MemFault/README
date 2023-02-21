@@ -1,6 +1,14 @@
 
-./NRFSDKSrc/modules/nrfx/soc/nrfx_irqs_nrf52840.h
-  - make sure we define RTC1_IRQHandler to use FreeRTOS xPortSysTickHandler
+ Files changes required to support Memfault in an PlatformIO Adafruit runtime environment
+
+  ./NRFSDKSrc/modules/nrfx/soc/nrfx_irqs_nrf52840.h
+  -  Adafruit version, modified to make sure we define
+  -  RTC1_IRQHandler to use FreeRTOS xPortSysTickHandler
+
+ .platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/drivers/nrfx_common.h $PIO_PROJDIR/include/drivers 
+  - Adafruit version of nrfx_common.h, need for NRF_STATIC definitions
+  - copied in from AdaFruit runtime unchanged
+
 
 
 ./AdaFruitFramework/framework-arduinoadafruitnrf52/libraries/SPI/extra_script.py
@@ -11,14 +19,6 @@
 ./AdaFruitFramework/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/library.json
    - to filter out unwanted include files when TinyUSB is built
 
-./AdaFruitFramework/framework-arduinoadafruitnrf52/cores/nRF5/main.cpp
-   - may not be anything any more???
-
-./AdaFruitFramework/framework-arduinoadafruitnrf52/cores/nRF5/nordic/nrfx/drivers/src/nrfx_power.c
-   - sets NRFX_POWER_ENABLED 1, might be better in sdk_config.h??
-
-./AdaFruitFramework/framework-arduinoadafruitnrf52/cores/nRF5/freertos/config/FreeRTOSConfig.h
-   - ?????
    
 ./SX126x-Arduino/extra_script.py
 ./SX126x-Arduino/library.json

@@ -1,0 +1,2 @@
+
+pio run -e wisblock_rtt -e wisblock_cli -e wisblock_term -e xiao_rtt -e xiao_cli -e xiao_term -e wisblock_term_lora -e wisblock_rtt_lora 2>&1 | tee log

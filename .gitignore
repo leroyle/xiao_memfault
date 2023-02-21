@@ -2,3 +2,4 @@
 .pio
 include/drivers/
 include/framework-arduinoadafruitnrf52/
+src/loraCreds.h

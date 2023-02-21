@@ -34,7 +34,11 @@
 #include "nrf_soc.h"
 #endif
 
+// CHANGES TO INCORPORATE Memfault
+#ifdef MEMFAULT
 #include "memfault/ports/freertos_trace.h"
+#endif
+
 // This port of nrf52 use RTC for freeRTOS tick
 
 /*-----------------------------------------------------------
@@ -76,12 +80,16 @@
 /* Hook function related definitions. */
 #define configUSE_IDLE_HOOK                                      1
 #define configUSE_TICK_HOOK                                      0
-//LAL #define configCHECK_FOR_STACK_OVERFLOW                           1
-// LAL for memfault
+
+// CHANGES TO INCORPORATE Memfault
+#ifdef MEMFAULT
 #define configCHECK_FOR_STACK_OVERFLOW                           2
-//LAL  void vAssertCalled(const char *file, int line);
-//LAL #define configASSERT(x) if ((x) == 0) vAssertCalled( __FILE__, __LINE__ )
-//LAL END
+void vAssertCalled(const char *file, int line);
+#define configASSERT(x) if ((x) == 0) vAssertCalled( __FILE__, __LINE__ )
+#else
+#define configCHECK_FOR_STACK_OVERFLOW                           1
+#endif  // MEMFAULT
+
 #define configUSE_MALLOC_FAILED_HOOK                             1
 
 /* Run time and task stats gathering related definitions. */
@@ -186,11 +194,7 @@ standard names - or at least those used in the unmodified vector table. */
  * basing on the settings above
  */
 #define configSYSTICK_CLOCK_HZ  ( 32768UL )
-#ifndef LAL
 #define xPortSysTickHandler     RTC1_IRQHandler
-#else
-#define xPortSysTickHandler     RTC2_IRQHandler
-#endif
 
 /** Implementation note:  Use this with caution and set this to 1 ONLY for debugging
  * ----------------------------------------------------------

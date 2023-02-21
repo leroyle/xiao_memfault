@@ -1,4 +1,3 @@
-
 #ifdef INCLUDE_NO_LORA
 #include <Arduino.h>
 #include "Adafruit_TinyUSB.h"
@@ -292,7 +291,7 @@ void setup()
 }
 
 uint32_t lastTime=0;
-uint32_t delayTime = pdMS_TO_TICKS(10 * 1000* 10);
+uint32_t delayTime = pdMS_TO_TICKS(20 * 1000);
 uint32_t heartBeatCount;
 uint32_t initCount=0;
 void loop()
@@ -324,7 +323,7 @@ void lorawan_has_joined_handler(void)
 {
   if(doOTAA == true)
   {
-  Serial.println("OTAA Mode, Network Joined!");
+  Serial.println("\n\t********  OTAA Mode, Network Joined!  ********\n");
   }
   else
   {
