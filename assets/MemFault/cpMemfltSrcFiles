@@ -8,9 +8,12 @@ echo "*** Please reset the top level directories before using this script ***"
 echo ""
 exit
 
+# set appropriately
+CURRENT_PROJECT_SUBDIR=test
+
 MEMFLT_SRCDIR=~/Documents/Tools/MemFault/memfault-firmware-sdk/
-PIO_PROJDIR=~/Documents/PlatformIO/Projects/test
-PIO_PROJLIB=~/Documents/PlatformIO/Projects/test/lib
+PIO_PROJDIR=~/Documents/PlatformIO/Projects/$CURRENT_PROJECT_SUBDIR
+PIO_PROJLIB=~/Documents/PlatformIO/Projects/$CURRENT_PROJECT_SUBDIR/lib
 PIO_FRAMEWORK_ARDUINO_ADA=~/.platformio/packages/framework-arduinoadafruitnrf52
 ASSET_DIR=$PIO_PROJDIR/assets/MemFault
 
@@ -292,7 +295,7 @@ function fixMemfaultFiles()
 #
 function checkForLibraryExtraScripts()
 {
-  // TinyUSB
+  # TinyUSB
   LIB_JSON=~/.platformio/packages/framework-arduinoadafruitnrf52/libraries/Adafruit_TinyUSB_Arduino/library.json
 
   fgrep '"extraScript"' $LIB_JSON > /dev/null
@@ -311,7 +314,7 @@ function checkForLibraryExtraScripts()
   fi
 
 
-  // SPI
+  # SPI
   LIB_SPIJSON=~/.platformio/packages/framework-arduinoadafruitnrf52/libraries/SPI/library.json
 
   fgrep '"extraScript"' $LIB_SPIJSON > /dev/null

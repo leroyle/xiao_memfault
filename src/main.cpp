@@ -85,8 +85,6 @@ void loop() {
 #include <Arduino.h>
 #include "Adafruit_TinyUSB.h"
 
-// LoRaWan credentials
-#include "loraCreds.h"
 #ifdef MEMFAULT
 #include "memfaultMain.h"
 #endif
@@ -95,6 +93,8 @@ void loop() {
 */
 
 #ifdef INCLUDE_LORA_API_CALLS
+// LoRaWan credentials
+#include "loraCreds.h"
 #include <LoRaWan-RAK4630.h> //http://librarymanager/All#SX126x
 #endif
 
