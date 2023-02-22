@@ -179,6 +179,7 @@ modules/nrfx/drivers/include/nrfx_power_clock.h
 modules/nrfx/drivers/include/nrfx_rtc.h
 modules/nrfx/drivers/include/nrfx_wdt.h
 modules/nrfx/drivers/nrfx_errors.h
+modules/nrfx/drivers/nrfx_common.h
 modules/nrfx/drivers/src/nrfx_clock.c
 modules/nrfx/drivers/src/nrfx_rtc.c
 modules/nrfx/drivers/src/nrfx_wdt.c
