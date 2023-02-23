@@ -1,0 +1,7 @@
+
+ If updating/changing softdevice versions:
+1. add new device files here
+2. update platform linker file to adjust "FLASH ORIGIN" address 
+ at:  ~/.platformio/packages/framework-arduinoadafruitnrf52/cores/nRF5/linker
+3. update board file softdevice token in board specific file at 
+~/.platformio/platforms/nordicnrf52/boards
