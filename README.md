@@ -203,14 +203,18 @@ Execution:
 * This will result in a bunch of base64 strings being dumped to the serial terminal. 
 * Copy the dumped data (or use the virtual terminal's log file) to a file of any name, for instance "log".
 
-Within the projects assets directory is a python script that can be used to upload the data to the Memfault cloud. One need not parse the terminal log file, you can upload the entire file, the cloud processing will handle the decoding.
+#### Memfault Cloud Platform
+To utilize the Memfault Cloud platform to visualize the fault data you will need to sign up for an account at www.memfault.com.
+Once signed you you will need a unique project key. https://docs.memfault.com/docs/android/android-getting-started-guide/
+
+Within this projects assets directory is a python script that can be used to upload the data to the Memfault cloud. One need not parse the terminal log file, you can upload the entire file, the cloud processing will handle the decoding.
 The file:
 ```
 assets/MemFault/postLogtoCloud
 ```
-will need to be edited to add your own Memfault supplied "project-key", see a note in the file. This should be obtained when you create an account/device on the Memfault cloud.
+One will need to edit this script to add your own Memfault supplied "project-key", see a note in the file. This should be obtained when you create an account/device on the Memfault cloud.
 
-once you have dumped the data via "export" another "get_core" the cli should report "No coredump present!".
+Once you have dumped the data via "export" executing another "get_core" from within the app cli should report "No coredump present!".
 
 Memfault has much more functionality that uploading core dump data, this demo only scratches the surface of it's capability. Refer to the main Memfault site at www.memfault.com or Memfault videos on YouTube for more details.
 
