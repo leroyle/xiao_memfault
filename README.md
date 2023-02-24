@@ -3,7 +3,7 @@
 switched as one expects.
 
 ## NOTE: This is a PlatformIO project work in progress.
-### NOTE: Throughout the course of developing this project we on several occasions have blown out bootloader code which has required a reload of the boot loader. This due to our experimenting, not the fault of the Memfaul SDK. If using this project be prepared for the same. This may require reloading via the device SWD/J-Link interface.
+### NOTE: Throughout the course of developing this project we on several occasions have blown out bootloader code which has required a reload of the boot loader. This due to our experimenting, not the fault of the Memfaul SDK. If using this project be prepared for the same. This may require reloading the boot loader code via the device SWD/J-Link interface.
 
 #### A simple example implementation of Memfault.com (remote monitoring for Embedded devices)
 Memfault is a framework that allows remote monitoring of your embedded devices.

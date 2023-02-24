@@ -1,18 +1,11 @@
-#ifdef MEMFAULT
 #include <Arduino.h>
 #include "Adafruit_TinyUSB.h"
-
-// Now defined in platformio.ini
-//#define TERM_CLI
-// #define MEMFAULT_RTT
-// #define MEMFAULT_TERM
 
 #include "app_error.h"
 #include "app_timer.h"
 
-#ifndef TERM_CLI
- #define ADD_WATCHDOG
-#endif
+// Add watch dog support
+#define ADD_WATCHDOG
 
 
 extern "C" {
@@ -23,41 +16,18 @@ extern "C" {
 #include "mflt_cli.h"
 #include "memfault/components.h"
 
-#if defined (MEMFAULT_TERM) || defined (MEMFAULT_RTT)
 
 #ifdef ADD_WATCHDOG
 #include "memfault/ports/watchdog.h"
 #endif
 
-#endif
-
 #include "memfault/ports/freertos.h"
 
 /**
- *  define
- *  TERM_CLI to use custom funbiscuit cli implementation
- *  MEMFAULT_TERM to use Memfault shell mode with a serial terminal
- *  MEMFAULT_RTT to use Memfault RTT mode with a Segger debug module and 
- * JLinkRTTClient
+ *  This implementation to uses Memfault shell mode with a serial terminal
  *
 */
-#ifdef TERM_CLI
-#define ENABLE_APP_CLI
-#define appVersion "funbiscuit_Cli V0.5"
-#include "cli.h"
-void term_CLI_Loop(void);
-#endif
-
-#ifdef MEMFAULT_TERM
 #define appVersion "Memfault Term CLI V0.5"
-void memfault_TERM_Loop(void);
-#endif
-
-#ifdef MEMFAULT_RTT
-#define appVersion "Memfault RTT CLI V0.5"
-void memfault_RTT_Loop(void);
-#endif
-
 
 #define NRF_LOG_DEFAULT_BACKENDS_INIT() nrf_log_default_backends_init()
 
@@ -68,8 +38,6 @@ ret_code_t nrf_drv_clock_init(void);
 void nrf_log_default_backends_init(void);
 void mflt_cli_try_process(void);
 }
-
-#if defined (MEMFAULT_TERM) || defined (MEMFAULT_RTT)
 
 static void log_init(void) {
   const ret_code_t err_code = NRF_LOG_INIT(NULL);
@@ -86,7 +54,6 @@ static void timers_init(void) {
    err_code = app_timer_init();
    APP_ERROR_CHECK(err_code);
 }
-#endif
 
 #ifdef ADD_WATCHDOG
 static void prv_wdt_event_handler(void) {
@@ -114,7 +81,6 @@ static void prv_hardware_watchdog_feed(void) {
 }
 #endif // ADD_WATCHDOG
 
-#ifdef MEMFAULT_TERM
 // Needed by Memfault for output to a serial terminal in shell mode
 //! We will use the Memfault CLI shell as a very basic debug interface
   static int prv_send_char(char c);
@@ -127,15 +93,13 @@ static int prv_send_char(char c) {
   fprintf(stderr,"%c", c);
   return 0;
 }
-#endif
 
-void memfaultSetup() {
+void appSetup() {
 
    // these try to restart uart, results in a UART POWER CLOCK interrup
    // nrf_drv_clock_init();
    // nrf_drv_clock_lfclk_request(NULL);
 
-#if defined (MEMFAULT_TERM) || defined (MEMFAULT_RTT)
    log_init();
    NRF_LOG_WARNING("TEST");
 
@@ -145,11 +109,8 @@ void memfaultSetup() {
    memfault_freertos_port_boot();
    memfault_platform_boot();
 
-#if defined (MEMFAULT_TERM) 
    memfault_demo_shell_boot(&impl);
    prv_send_char('\n');
-#endif
-#endif
 
 #ifdef ADD_WATCHDOG
    prv_hardware_watchdog_enable();
@@ -157,45 +118,15 @@ void memfaultSetup() {
 #endif
 
 
-#ifdef TERM_CLI
-    uint8_t cliRc = cliSetup(appVersion);
-    if (cliRc == 0)
-    {
-        Serial.println(F("Cli has started. Enter your commands."));
-    } else {
-        Serial.println(F("<====== ERROR: Cli startup failed. ======"));
-    }
-
-#endif
 }
  
 
-void memfaultLoop() {
+void appLoop() {
 
 #ifdef ADD_WATCHDOG
     prv_hardware_watchdog_feed();
     memfault_software_watchdog_feed();
 #endif
-
-
-// finish loop depending on whats enabled
-#ifdef MEMFAULT_TERM
-	memfault_TERM_Loop();
-#endif
-#ifdef MEMFAULT_RTT
-	memfault_RTT_Loop();
-#endif
-//#ifdef TERM_CLI
-//	term_CLI_Loop();
-//#endif
-
-
-}
-
-#ifdef MEMFAULT_TERM
-
-void memfault_TERM_Loop(void)
-{
 
     while (Serial.available() > 0)
     {
@@ -207,36 +138,4 @@ void memfault_TERM_Loop(void)
       nrf_pwr_mgmt_run();
  }
 }
-#endif 
 
-#ifdef MEMFAULT_RTT
-void memfault_RTT_Loop(void)
-{
-
-    mflt_cli_try_process();
- if (NRF_LOG_PROCESS() == false) {
-      nrf_pwr_mgmt_run();
- }
-}
-#endif 
-
-#ifdef TERM_CLI
-void term_CLI_Loop(void)
-{
-    while (Serial.available() > 0)
-    {
-        // if (appCli != NULL)
-        // {
-        //     embeddedCliReceiveChar(appCli, Serial.read());
-       //  }
-    }
-
-    //if (appCli != NULL)
-    //{
-      //  embeddedCliProcess(appCli);
-   // }
-
-}
-#endif
-
-#endif
