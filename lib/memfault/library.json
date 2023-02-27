@@ -16,7 +16,7 @@
 		"flags": [
 			" -D MEMFAULT_SDK_INCS",
 			" -D MEMFAULT",
-			"-Iinclude",
+			"-I include",
 			"-I components/include",
 			"-I components/include/memfault",
 			"-I ports/include",
@@ -52,9 +52,7 @@
 			"-I ../nrf5_sdk/modules/nrfx/hal",
 			"-I ../nrf5_sdk/modules/nrfx/drivers",
 			"-I ../nrf5_sdk/modules/nrfx/drivers/include",
-			"-I ../nrf5_sdk/modules/nrfx/mdk",
-			"-I FreeRTOS",
-			"-I Source/LAL"
+			"-I ../nrf5_sdk/modules/nrfx/mdk"
 
 		],
       "extraScript": "extra_script.py"

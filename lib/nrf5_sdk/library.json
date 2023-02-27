@@ -18,7 +18,7 @@
 			" -D MEMFAULT",
 			"-Iinclude",
 			"-I external/segger_rtt",
-			"-I ../../include/FreeRTOS",
+			"-I ../../include/adafruit_mods/cores/nRF5/freertos/config",
 			"-I components/libraries/balloc",
 			"-I components/libraries/atomic",
 			"-I components/libraries/cli",
@@ -46,8 +46,7 @@
 			"-I modules/nrfx/templates",
 			"-I modules/nrfx/hal",
 			"-I modules/nrfx/drivers/include",
-			"-I modules/nrfx/mdk",
-			"-I FreeRTOS"
+			"-I modules/nrfx/mdk"
 		],
         	"extraScript": "extra_script.py"
 

@@ -5,7 +5,7 @@ GROUP(-lgcc -lc -lnosys)
 
 MEMORY
 {
-  /* FLASH (rx) : ORIGIN = 0x26000, LENGTH = 0x7B000 */
+  /* Seeed Xiao w/Adafruit runtime compiles agains Softdevice V7 */
   FLASH (rx)    : ORIGIN = 0x27000, LENGTH = 0xED000 - 0x27000
 
   MEMFAULT_CORES (rw) : ORIGIN = 0xA1000, LENGTH = 0x40000

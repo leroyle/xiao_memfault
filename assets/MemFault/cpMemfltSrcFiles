@@ -265,12 +265,20 @@ function fixAdafruitFiles()
 
 # workaround for API collisions, freertos_trace is required for copying 
 # task data to the core file
-   mkdir -p $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/ports/include/memfault/ports
-   cp $MEMFLT_SRCDIR/ports/include/memfault/ports/freertos_trace.h $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/ports/include/memfault/ports/freertos_trace.h
-   mkdir -p $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/components/include/memfault/core/
-   touch $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/components/include/memfault/core/heap_stats.h
-   mkdir -p $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/components/include/memfault/
-   touch $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/components/include/memfault/config.h
+   # make the directories with the project
+   mkdir -p $PIO_PROJDIR/include/adafruit_mods/cores/nRF5/freertos/config
+   mkdir -p $PIO_PROJDIR/include/adafruit_mods/cores/nRF5/freertos/Source/include
+
+    cp $ASSET_DIR/PlatformIO_AdaFruit/framework-arduinoadafruitnrf52/cores/nRF5/freertos/config/FreeRTOSConfig.h $PIO_PROJDIR/include/adafruit_mods/cores/nRF5/freertos/config
+
+    cp $ASSET_DIR/PlatformIO_AdaFruit/framework-arduinoadafruitnrf52/cores/nRF5/freertos/Source/include/FreeRTOS.h $PIO_PROJDIR/include/adafruit_mods/cores/nRF5/freertos/Source/include/
+
+
+#   cp $MEMFLT_SRCDIR/ports/include/memfault/ports/freertos_trace.h $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/ports/include/memfault/ports/freertos_trace.h
+#   mkdir -p $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/components/include/memfault/core/
+#   touch $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/components/include/memfault/core/heap_stats.h
+#   mkdir -p $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/components/include/memfault/
+#   touch $PIO_PROJDIR/include/framework-arduinoadafruitnrf52/components/include/memfault/config.h
 
   mkdir -p $PIO_PROJDIR/include/drivers/
   cp $PIO_FRAMEWORK_ARDUINO_ADA/cores/nRF5/nordic/nrfx/drivers/nrfx_common.h $PIO_PROJDIR/include/drivers
