@@ -87,9 +87,15 @@
 //
 // Hardware & Software Watchdog configuration
 //
-// We need to define RTC1_ENABLED as it's used by FreeRTOS
-
+//LAL We need these all for WatchDog to be configured correctly
+// RTC0 potentially is used by the Softdevice
+// RTC1 by FreeRTOS
+// RTC2 by Memfault WatchDog
+#define NRFX_RTC0_ENABLED 1
+#define NRFX_RTC1_ENABLED 1
+#define NRFX_RTC2_ENABLED 1
 #define RTC_ENABLED 1
+#define RTC0_ENABLED 1
 #define RTC1_ENABLED 1
 #define RTC2_ENABLED 1
 #define WDT_ENABLED 1
