@@ -506,7 +506,11 @@ void memfault_heap_stats_malloc(const void *lr, const void *ptr, size_t size);
 #endif
 
 #ifndef traceTASK_CREATE
-	#define traceTASK_CREATE( pxNewTCB )
+#ifdef MEMFAULT
+#define traceTASK_CREATE(pxNewTcb) void memfault_freertos_trace_task_create(void * pxNewTcb)
+#else
+#define traceTASK_CREATE( pxNewTCB )
+#endif
 #endif
 
 #ifndef traceTASK_CREATE_FAILED
@@ -514,7 +518,11 @@ void memfault_heap_stats_malloc(const void *lr, const void *ptr, size_t size);
 #endif
 
 #ifndef traceTASK_DELETE
+#ifdef MEMFAULT
+	#define traceTASK_DELETE( pxTaskToDelete ) void  memfault_freertos_trace_task_delete(void * pxTaskToDelete)
+#else
 	#define traceTASK_DELETE( pxTaskToDelete )
+#endif
 #endif
 
 #ifndef traceTASK_DELAY_UNTIL

@@ -91,6 +91,8 @@
 // RTC0 potentially is used by the Softdevice
 // RTC1 by FreeRTOS
 // RTC2 by Memfault WatchDog
+
+#define NRFX_RTC_ENABLED 1
 #define NRFX_RTC0_ENABLED 1
 #define NRFX_RTC1_ENABLED 1
 #define NRFX_RTC2_ENABLED 1
