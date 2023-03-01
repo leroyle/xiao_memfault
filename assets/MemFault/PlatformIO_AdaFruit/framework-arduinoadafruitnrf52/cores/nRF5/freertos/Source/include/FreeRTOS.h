@@ -52,6 +52,15 @@
 extern "C" {
 #endif
 
+// FreeRTOSConfig.h is often included in assembly files so wrap function declarations for
+// convenience to prevent compilation errors
+#if !defined(__ASSEMBLER__) && !defined(__IAR_SYSTEMS_ASM__)
+
+void memfault_freertos_trace_task_create(void *tcb);
+void memfault_freertos_trace_task_delete(void *tcb);
+#endif
+
+
 /* Application specific configuration options. */
 #include "FreeRTOSConfig.h"
 
@@ -505,12 +514,20 @@ void memfault_heap_stats_malloc(const void *lr, const void *ptr, size_t size);
 	#define traceQUEUE_DELETE( pxQueue )
 #endif
 
-#ifndef traceTASK_CREATE
 #ifdef MEMFAULT
-#define traceTASK_CREATE(pxNewTcb) void memfault_freertos_trace_task_create(void * pxNewTcb)
-#else
-#define traceTASK_CREATE( pxNewTCB )
+#ifdef traceTASK_CREATE
+#undef traceTASK_CREATE
 #endif
+#define traceTASK_CREATE(pxNewTcb) memfault_freertos_trace_task_create(pxNewTcb)
+
+#ifdef traceTASK_DELETE
+#undef traceTASK_DELETE
+#endif
+#define traceTASK_DELETE( pxTaskToDelete )  memfault_freertos_trace_task_delete(pxTaskToDelete)
+#endif
+
+#ifndef traceTASK_CREATE
+#define traceTASK_CREATE( pxNewTCB )
 #endif
 
 #ifndef traceTASK_CREATE_FAILED
@@ -518,11 +535,7 @@ void memfault_heap_stats_malloc(const void *lr, const void *ptr, size_t size);
 #endif
 
 #ifndef traceTASK_DELETE
-#ifdef MEMFAULT
-	#define traceTASK_DELETE( pxTaskToDelete ) void  memfault_freertos_trace_task_delete(void * pxTaskToDelete)
-#else
 	#define traceTASK_DELETE( pxTaskToDelete )
-#endif
 #endif
 
 #ifndef traceTASK_DELAY_UNTIL
