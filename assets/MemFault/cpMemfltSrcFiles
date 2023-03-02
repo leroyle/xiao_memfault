@@ -295,6 +295,11 @@ function fixMemfaultFiles()
   mkdir -p  $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/components/core/src/
   cp $ASSET_DIR/MemfaultSrc/lib/memfault/components/core/src/memfault_log.c $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/components/core/src/
 
+  // add watchdog timeout test to the TERM cli
+  cp $ASSET_DIR/MemfaultSrc/lib/memfault/components/demo/src/panics/memfault_demo_panics.c $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/components/demo/src/panics/memfault_demo_panics.c
+  cp $ASSET_DIR/MemfaultSrc/lib/memfault/components/demo/src/memfault_demo_shell_commands.c $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/components/demo/src/memfault_demo_shell_commands.c
+  cp $ASSET_DIR/MemfaultSrc/lib/memfault/components/include/memfault/demo/cli.h $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/components/include/memfault/demo/cli.h
+
 }
 
 # Update the Adafruit library "library.json" file,  
