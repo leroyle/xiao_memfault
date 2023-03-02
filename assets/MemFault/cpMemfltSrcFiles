@@ -300,6 +300,7 @@ function fixMemfaultFiles()
   cp $ASSET_DIR/MemfaultSrc/lib/memfault/components/demo/src/memfault_demo_shell_commands.c $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/components/demo/src/memfault_demo_shell_commands.c
   cp $ASSET_DIR/MemfaultSrc/lib/memfault/components/include/memfault/demo/cli.h $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/components/include/memfault/demo/cli.h
 
+  cp $ASSET_DIR/MemfaultSrc/lib/memfault/ports/include/memfault/ports/  $PIO_PROJLIB/$PIO_MEMFLT_LIBDIR/ports/include/memfault/ports/freertos.h
 }
 
 # Update the Adafruit library "library.json" file,  
