@@ -161,7 +161,6 @@ SECTIONS
     .heap ALIGN(4)  (COPY):
     {
         __HeapBase = .;
-	. = . + 0x3000;
         __end__ = . ;
         PROVIDE(end = .);
         KEEP(*(.heap*))

@@ -58,7 +58,7 @@ __StackTop:
 #elif defined(__HEAP_SIZE)
     .equ Heap_Size, __HEAP_SIZE
 #else
-    .equ Heap_Size, 16384
+    .equ Heap_Size, 32768
 #endif
     .globl __HeapBase
     .globl __HeapLimit

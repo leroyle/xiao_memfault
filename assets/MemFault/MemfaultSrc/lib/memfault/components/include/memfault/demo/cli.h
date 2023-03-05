@@ -103,6 +103,14 @@ int memfault_demo_cli_cmd_export(int argc, char *argv[]);
 //! It takes no arguments.
 int memfault_demo_cli_cmd_test_hang(int argc, char *argv[]);
 
+//! Command to dump heap statistics
+//! It takes no arguments.
+int memfault_demo_cli_cmd_heap_check(int argc, char *argv[]);
+
+//! Command to dump stack statistics
+//! It takes no arguments.
+int memfault_demo_cli_cmd_stack_check(int argc, char *argv[]);
+
 #ifdef __cplusplus
 }
 #endif

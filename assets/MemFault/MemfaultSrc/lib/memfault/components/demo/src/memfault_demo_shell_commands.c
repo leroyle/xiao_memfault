@@ -67,6 +67,8 @@ static const sMemfaultShellCommand s_memfault_shell_commands[] = {
   {"test_reboot",  memfault_demo_cli_cmd_system_reboot, "Force system reset and track it with a trace event"},
   {"test_trace",  memfault_demo_cli_cmd_trace_event_capture, "Capture an example trace event"},
   {"test_hang",  memfault_demo_cli_cmd_test_hang, "Spin forever, wait for watchdog to expire"},
+  {"heap_check",  memfault_demo_cli_cmd_heap_check, "Dump heap statistics"},
+  {"stack_check",  memfault_demo_cli_cmd_stack_check, "Check stack statistics"},
 
   {"help", memfault_shell_help_handler, "Lists all commands"},
 };
