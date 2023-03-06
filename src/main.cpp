@@ -13,6 +13,7 @@
 
 void loop_two(void *);
 static TaskHandle_t  _loopHandle_two;
+extern  uint32_t __start_gnu_build_id_start;
 
 void setup() {
 
@@ -26,6 +27,8 @@ void setup() {
     // Create a second task so we can easily verfy task switching is not broken
     xTaskCreate(loop_two, "looptwo", 0x400, NULL, TASK_PRIO_LOW, &_loopHandle_two);
 
+    Serial.print("GNU BUILD ID: ");
+    Serial.println(__start_gnu_build_id_start);
 }
 
 uint32_t lastTime=0;
